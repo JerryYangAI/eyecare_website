@@ -64,7 +64,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.9);back
 .trustline span{display:flex;align-items:center;gap:8px}
 .trustline span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
 .certs{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:20px}
-.certs img{height:54px;width:auto;background:var(--paper);border:1px solid var(--lg);border-radius:10px;padding:8px 12px;cursor:zoom-in;transition:transform .2s,box-shadow .2s}
+.certs img{height:92px;width:auto;background:#fff;border:1px solid var(--lg);border-radius:8px;padding:5px;cursor:zoom-in;transition:transform .2s,box-shadow .2s}
 .certs img:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(58,46,38,.12)}
 .certs .more{font-family:var(--head);font-size:13px;color:var(--mid)}
 
@@ -121,6 +121,13 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.9);back
 .vframe .play span{width:64px;height:64px;border-radius:50%;background:rgba(207,125,78,.92);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px}
 .vmod .floathint{font-family:var(--head);font-size:12px;color:var(--mid);margin-top:10px;letter-spacing:1px}
 
+/* honors wall */
+.honors{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+.honor{background:#fff;border:1px solid var(--lg);border-radius:12px;padding:14px;text-align:center;transition:transform .2s,box-shadow .2s}
+.honor:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(58,46,38,.12)}
+.honor .pic{height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.honor .pic img{max-height:150px;width:auto;cursor:zoom-in}
+.honor p{font-family:var(--head);font-size:13px;color:#5b4d42;margin-top:12px;line-height:1.4}
 /* cases */
 .casebar{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
 .case{background:var(--paper);border:1px solid var(--lg);border-radius:14px;padding:24px}
@@ -149,8 +156,8 @@ footer a:hover{color:var(--amber)}
   .menu.open{display:flex}
   .menu a{padding:14px 24px;border-bottom:1px solid var(--lg)}
   .menu-btn{display:block}
-  .g4,.g3,.split,.dual,.casebar,.vmod,footer .ft{grid-template-columns:1fr}
-  .casebar{grid-template-columns:1fr 1fr}
+  .g4,.g3,.split,.dual,.casebar,.vmod,.honors,footer .ft{grid-template-columns:1fr}
+  .casebar,.honors{grid-template-columns:1fr 1fr}
   .sec{padding:58px 0}
   .hero{min-height:auto;padding:36px 0}
   .hero-bg::after{background:linear-gradient(180deg,rgba(247,240,230,.84),rgba(247,240,230,.92))}
@@ -187,12 +194,12 @@ footer a:hover{color:var(--amber)}
       <span>15 年技术沉淀</span><span>CTI 权威检测</span><span>5 大安全认证</span><span>全链路严苛品控</span>
     </div>
     <div class="certs">
-      <img src="images/certs/CE.png" alt="CE 认证证书" data-lb>
-      <img src="images/certs/FCC.png" alt="FCC 认证证书" data-lb>
-      <img src="images/certs/FDA.png" alt="FDA 认证证书" data-lb>
-      <img src="images/certs/GB4706.png" alt="GB4706 国家强制安全认证" data-lb>
-      <img src="images/certs/MIC.png" alt="MIC 认证证书" data-lb>
-      <img src="images/certs/CTI华测检测报告-01.png" alt="CTI 华测检测报告" data-lb>
+      <img src="images/certs/CTI.jpg" alt="CTI 华测检测研究报告（品川光医 Lumineyes 光敷护眼仪）" data-lb>
+      <img src="images/certs/CE.jpg" alt="CE 符合性验证证书（RED 2014/53/EU）" data-lb>
+      <img src="images/certs/FDA.jpg" alt="FDA 注册与列名证书" data-lb>
+      <img src="images/certs/GB4706.jpg" alt="GB 4706 国家强制安全认证" data-lb>
+      <img src="images/certs/FCC.jpg" alt="FCC 认证证书" data-lb>
+      <img src="images/certs/MIC.jpg" alt="MIC 认证证书" data-lb>
       <span class="more">点击证书可放大查看</span>
     </div>
   </div>
@@ -276,15 +283,33 @@ footer a:hover{color:var(--amber)}
     <div class="vmod">
       <div class="rv">
         <div class="vframe">
-          <img src="images/process-vertical.jpg" alt="从研发到交付全流程视频">
-          <div class="play"><span>▶</span></div>
+          <video controls preload="none" poster="images/poster-factory.jpg"><source src="videos/factory.mp4" type="video/mp4"></video>
         </div>
-        <div class="floathint">9 : 16 工厂实拍视频（待接入）</div>
+        <div class="floathint">生产体系 · 出厂检测实景</div>
       </div>
       <div class="rv">
         <h3 style="font-size:clamp(20px,2.6vw,26px);margin-bottom:12px">看得见的生产，<em>看不见的严苛</em></h3>
         <p class="lead">从研发立项、关键物料、组装产线到出厂全检，每一环节都有标准与记录。我们相信，真正的安心，来自每一个可被追溯的细节——这也是品川愿意把"过程"展示给你看的原因。</p>
       </div>
+    </div>
+
+    <!-- 资质与荣誉墙 -->
+    <div class="eyebrow rv" style="margin-top:70px">资质与荣誉</div>
+    <h2 class="sec-title rv">十余年技术积淀，<em>被行业反复看见</em></h2>
+    <p class="lead rv">国家高新技术企业、专精特新「小巨人」、德国红点设计奖、中国创新医疗器械榜 TOP100……每一项荣誉，都是品川在光学与眼健康领域长期投入的注脚。</p>
+    <div class="honors">
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-01.jpg" alt="国家高新技术企业证书" data-lb></div><p>国家高新技术企业</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-02.jpg" alt="国家专精特新小巨人" data-lb></div><p>国家专精特新「小巨人」</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-04.jpg" alt="德国红点设计奖 Red Dot" data-lb></div><p>德国红点设计奖 Red Dot</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-08.jpg" alt="中国创新医疗器械榜 TOP100" data-lb></div><p>中国创新医疗器械榜 TOP100</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-06.jpg" alt="中国光学工程学会科学技术发明奖" data-lb></div><p>光学工程学会·发明奖</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-09.jpg" alt="中国医疗器械创新创业大赛一等奖" data-lb></div><p>医疗器械创新创业大赛一等奖</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-07.jpg" alt="年度十大光学产业技术" data-lb></div><p>年度十大光学产业技术</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-12.jpg" alt="华夏医学科技奖二等奖" data-lb></div><p>华夏医学科技奖二等奖</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-03.jpg" alt="深圳市专精特新中小企业" data-lb></div><p>深圳市专精特新中小企业</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-05.jpg" alt="PVF 好设计金奖" data-lb></div><p>PVF 好设计金奖</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-10.jpg" alt="中国光电仪器品牌榜金隧奖" data-lb></div><p>中国光电仪器品牌榜·金隧奖</p></div>
+      <div class="honor rv"><div class="pic"><img src="images/honors/honor-11.jpg" alt="最佳智能医械技术创新产品" data-lb></div><p>最佳智能医械技术创新产品</p></div>
     </div>
   </div>
 </section>
@@ -300,10 +325,7 @@ footer a:hover{color:var(--amber)}
       <div class="case rv"><h3>分泌物多 晨起难睁</h3><p>晨起眼周分泌物多，睁眼困难。</p></div>
       <div class="case rv"><h3>眼痒泛红 爱揉眼</h3><p>眼痒、容易泛红，忍不住用手揉。</p></div>
     </div>
-    <div class="vframe rv" style="margin-top:30px;max-width:300px;aspect-ratio:9/16">
-      <img src="images/redlight.jpg" alt="用户使用品川光医红光护眼仪实拍">
-      <div class="play"><span>▶</span></div>
-    </div>
+    <video class="rv" controls preload="none" poster="images/poster-reviews.jpg" style="margin-top:30px;max-width:300px;width:100%;aspect-ratio:9/16;border-radius:18px;border:1px solid var(--lg);background:#000;display:block"><source src="videos/reviews.mp4" type="video/mp4"></video>
   </div>
 </section>
 
@@ -326,7 +348,7 @@ footer a:hover{color:var(--amber)}
         <span style="color:#a8977f">中国 · 上海</span>
       </div>
     </div>
-    <p class="legal">本网站仅用于品牌与产品信息展示，不在本站进行交易。本产品为家用眼部护理/舒缓设备，<b>非医疗器械</b>，不用于疾病的诊断或治疗；红光与热敷为日常护理与舒缓用途，个体体验存在差异。如有眼部疾病或持续不适，请及时就医。<br>© 2026 品川光医 KOUSHICARE · 保留所有权利</p>
+    <p class="legal">本产品为家用眼部护理/舒缓设备，<b>非医疗器械</b>，不用于疾病的诊断或治疗；红光与热敷为日常护理与舒缓用途，个体体验存在差异。如有眼部疾病或持续不适，请及时就医。<br>© 2026 品川光医 KOUSHICARE · 保留所有权利</p>
   </div>
 </footer>
 
