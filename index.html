@@ -53,7 +53,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.9);back
 /* HERO */
 .hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 72%}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(247,240,230,.97) 0%,rgba(247,240,230,.86) 40%,rgba(247,240,230,.3) 72%,rgba(247,240,230,.05) 100%)}
 .hero-in{position:relative;z-index:2;padding:56px 0;text-align:left}
 .slogan{font-family:var(--head);font-size:clamp(20px,2.8vw,28px);color:var(--amber);font-weight:700;margin-bottom:22px}
@@ -87,11 +87,12 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.9);back
 .tearlabels span{font-family:var(--head);font-size:13.5px;color:#4a3d33;background:var(--paper);border:1px solid var(--lg);border-radius:30px;padding:6px 15px}
 .tearlabels span b{color:var(--amber)}
 .dual{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
-.panel{background:var(--paper);border:1px solid var(--lg);border-radius:16px;padding:30px;overflow:hidden}
+.panel{background:var(--paper);border:1px solid var(--lg);border-radius:16px;padding:30px;overflow:hidden;display:flex;flex-direction:column}
 .panel h3{font-size:clamp(20px,2.6vw,24px);margin-bottom:14px}
 .spec{margin-top:14px;padding-top:14px;border-top:1px solid var(--lg);font-size:15.5px;color:#5b4d42;line-height:1.65}
 .spec b{font-family:var(--head);color:var(--amber);font-size:15.5px;font-weight:600}
-.panel video{width:100%;aspect-ratio:16/9;border-radius:12px;margin-top:18px;background:#000;border:1px solid var(--lg)}
+.panel video{width:100%;aspect-ratio:16/9;border-radius:12px;margin-top:auto;background:#000;border:1px solid var(--lg)}
+.panel .specwrap{margin-bottom:18px}
 
 /* timeline accordion */
 .tl{position:relative;margin-top:40px;border-left:2px solid var(--lg);padding-left:30px}
@@ -128,6 +129,19 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.9);back
 .honor .pic{height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .honor .pic img{max-height:150px;width:auto;cursor:zoom-in}
 .honor p{font-family:var(--head);font-size:13px;color:#5b4d42;margin-top:12px;line-height:1.4}
+/* honor badges (text only) */
+.badges{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.badge{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--lg);border-radius:30px;padding:12px 20px;font-family:var(--head);font-size:15px;color:#4a3d33}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber);flex:none}
+/* science highlights */
+.sci{margin-top:54px;background:#fff;border:1px solid var(--lg);border-radius:16px;padding:34px 32px}
+.sci .scihead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.sci h3{font-size:clamp(20px,2.6vw,26px)}
+.sci .lede{font-size:15px;color:#5b4d42;max-width:760px;margin:8px 0 22px}
+.scigrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.scigrid .s .n{font-family:var(--head);font-size:clamp(22px,2.6vw,30px);font-weight:600;color:var(--amber);line-height:1.1}
+.scigrid .s .l{font-size:13px;color:#5b4d42;margin-top:8px;line-height:1.5}
+.sci .src{font-size:12px;color:var(--mid);margin-top:22px;border-top:1px solid var(--lg);padding-top:14px}
 /* cases */
 .casebar{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
 .case{background:var(--paper);border:1px solid var(--lg);border-radius:14px;padding:24px}
@@ -240,16 +254,33 @@ footer a:hover{color:var(--amber)}
     <div class="dual">
       <div class="panel rv">
         <h3>红光养护</h3>
-        <div class="spec"><b>表层红光护理</b>：600-650nm，温和舒缓，放松眼周肌肉，缓解用眼后的酸胀与疲劳感</div>
-        <div class="spec"><b>深层红外养护</b>：800-850nm，温和养护，帮助维持睑脂正常分泌，让泪膜更稳定</div>
+        <div class="specwrap">
+          <div class="spec"><b>表层红光护理</b>：600-650nm，温和舒缓，放松眼周肌肉，缓解用眼后的酸胀与疲劳感</div>
+          <div class="spec"><b>深层红外养护</b>：800-850nm，温和养护，帮助维持睑脂正常分泌，让泪膜更稳定</div>
+        </div>
         <video controls preload="none" poster="images/poster-redlight.jpg"><source src="videos/redlight.mp4" type="video/mp4"></video>
       </div>
       <div class="panel rv">
         <h3>热敷舒缓</h3>
-        <div class="spec"><b>恒温热脉动技术</b>：41.5℃ 恒温软化睑脂，温控精度 ±0.5℃</div>
-        <div class="spec"><b>温波律动模式</b>：40-43℃ 温和波动，带动睑板腺规律舒张，促进油脂自主排出，舒缓反复干涩不适</div>
+        <div class="specwrap">
+          <div class="spec"><b>恒温热脉动技术</b>：41.5℃ 恒温软化睑脂，温控精度 ±0.5℃</div>
+          <div class="spec"><b>温波律动模式</b>：40-43℃ 温和波动，带动睑板腺规律舒张，促进油脂自主排出，舒缓反复干涩不适</div>
+        </div>
         <video controls preload="none" poster="images/poster-heat.jpg"><source src="videos/heat.mp4" type="video/mp4"></video>
       </div>
+    </div>
+
+    <div class="sci rv">
+      <div class="scihead"><div class="eyebrow">为什么是红光</div></div>
+      <h3>不是所有光都行——<em>红光与近红外，是细胞唯一能"读懂"的语言</em></h3>
+      <p class="lede">早在 1967 年，一台"功率不足"的红宝石激光器意外揭示：红光能加速细胞修复。半个多世纪的研究指向同一把"钥匙"——线粒体上的细胞色素 c 氧化酶，它含铜与铁，只吸收两个极窄的光窗：<b class="amber">630–670nm 红光</b>与 <b class="amber">810–850nm 近红外</b>。蓝光、绿光都无效。这正是品川采用「表层 600–650nm + 深层 800–850nm」双波段的科学依据。</p>
+      <div class="scigrid">
+        <div class="s"><div class="n">630–670<br>810–850nm</div><div class="l">细胞色素 c 氧化酶唯一吸收的红光与近红外光窗</div></div>
+        <div class="s"><div class="n">ATP ↑30–40%</div><div class="l">光子激活后数分钟内，细胞能量（ATP）显著提升</div></div>
+        <div class="s"><div class="n">数小时–数周</div><div class="l">「线粒体逆向信号」让一次照射的效果持续延展</div></div>
+        <div class="s"><div class="n">60 年 · 1800+</div><div class="l">光生物调节（PBM）领域累计登记的临床研究规模</div></div>
+      </div>
+      <p class="src">资料来源：光生物调节（Photobiomodulation, PBM）领域综述与公开研究（Mester 1967、Karu 等）。以上为红光/近红外作用机制的领域性科普，<b>不代表本产品的具体疗效宣称</b>；本产品为家用护理/舒缓设备，非医疗器械。详见 <a href="references.html" style="color:var(--amber)">研究文献</a>。</p>
     </div>
   </div>
 </section>
@@ -298,19 +329,19 @@ footer a:hover{color:var(--amber)}
     <div class="eyebrow rv" style="margin-top:70px">资质与荣誉</div>
     <h2 class="sec-title rv">十余年技术积淀，<em>被行业反复看见</em></h2>
     <p class="lead rv">国家高新技术企业、专精特新「小巨人」、德国红点设计奖、中国创新医疗器械榜 TOP100……每一项荣誉，都是品川在光学与眼健康领域长期投入的注脚。</p>
-    <div class="honors">
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-01.jpg" alt="国家高新技术企业证书" data-lb></div><p>国家高新技术企业</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-02.jpg" alt="国家专精特新小巨人" data-lb></div><p>国家专精特新「小巨人」</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-04.jpg" alt="德国红点设计奖 Red Dot" data-lb></div><p>德国红点设计奖 Red Dot</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-08.jpg" alt="中国创新医疗器械榜 TOP100" data-lb></div><p>中国创新医疗器械榜 TOP100</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-06.jpg" alt="中国光学工程学会科学技术发明奖" data-lb></div><p>光学工程学会·发明奖</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-09.jpg" alt="中国医疗器械创新创业大赛一等奖" data-lb></div><p>医疗器械创新创业大赛一等奖</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-07.jpg" alt="年度十大光学产业技术" data-lb></div><p>年度十大光学产业技术</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-12.jpg" alt="华夏医学科技奖二等奖" data-lb></div><p>华夏医学科技奖二等奖</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-03.jpg" alt="深圳市专精特新中小企业" data-lb></div><p>深圳市专精特新中小企业</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-05.jpg" alt="PVF 好设计金奖" data-lb></div><p>PVF 好设计金奖</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-10.jpg" alt="中国光电仪器品牌榜金隧奖" data-lb></div><p>中国光电仪器品牌榜·金隧奖</p></div>
-      <div class="honor rv"><div class="pic"><img src="images/honors/honor-11.jpg" alt="最佳智能医械技术创新产品" data-lb></div><p>最佳智能医械技术创新产品</p></div>
+    <div class="badges">
+      <span class="badge rv">国家高新技术企业</span>
+      <span class="badge rv">国家专精特新「小巨人」</span>
+      <span class="badge rv">德国红点设计奖 Red Dot</span>
+      <span class="badge rv">中国创新医疗器械榜 TOP100</span>
+      <span class="badge rv">中国光学工程学会·科学技术发明奖</span>
+      <span class="badge rv">医疗器械创新创业大赛一等奖</span>
+      <span class="badge rv">年度十大光学产业技术</span>
+      <span class="badge rv">华夏医学科技奖二等奖</span>
+      <span class="badge rv">深圳市专精特新中小企业</span>
+      <span class="badge rv">PVF 好设计金奖</span>
+      <span class="badge rv">中国光电仪器品牌榜·金隧奖</span>
+      <span class="badge rv">最佳智能医械技术创新产品</span>
     </div>
   </div>
 </section>
