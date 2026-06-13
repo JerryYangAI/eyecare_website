@@ -1,0 +1,35 @@
+# Decap CMS 配置（脚手架）
+# 部署到 GitHub + Cloudflare Pages 后，将 repo 改成真实仓库名并配置 OAuth 提供方。
+backend:
+  name: github
+  repo: OWNER/koushicare-website   # TODO: 替换为真实仓库
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+locale: "zh_Hans"
+
+collections:
+  - name: "home"
+    label: "首页内容"
+    files:
+      - name: "hero"
+        label: "首屏"
+        file: "content/home.json"
+        fields:
+          - { name: slogan, label: Slogan, widget: string }
+          - { name: title, label: 大标题, widget: text }
+          - { name: product_name, label: 产品名, widget: string }
+          - { name: description, label: 副文, widget: text }
+          - { name: hero_image, label: 首屏配图, widget: image }
+  - name: "articles"
+    label: "科普文章 / 文献"
+    folder: "content/articles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: 标题, widget: string }
+      - { name: date, label: 日期, widget: datetime }
+      - { name: summary, label: 摘要, widget: text }
+      - { name: cover, label: 封面, widget: image, required: false }
+      - { name: body, label: 正文, widget: markdown }
