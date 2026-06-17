@@ -20,8 +20,8 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 locale: "zh_Hans"
-site_url: https://koushicare.new-googles.com
-display_url: https://koushicare.new-googles.com
+site_url: https://eyecare-website.pages.dev
+display_url: https://eyecare-website.pages.dev
 publish_mode: simple
 
 collections:
