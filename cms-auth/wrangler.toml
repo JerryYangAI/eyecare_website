@@ -1,0 +1,13 @@
+name = "koushi-auth"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# 部署方式（命令行）：
+#   npm i -g wrangler
+#   wrangler login
+#   wrangler deploy
+#   wrangler secret put GITHUB_CLIENT_ID
+#   wrangler secret put GITHUB_CLIENT_SECRET
+#
+# 也可在 Cloudflare 控制台用网页方式创建 Worker，把 worker.js 内容粘贴进去，
+# 并在 Settings → Variables and Secrets 添加 GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET。

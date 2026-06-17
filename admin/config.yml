@@ -1,35 +1,234 @@
-# Decap CMS 配置（脚手架）
-# 部署到 GitHub + Cloudflare Pages 后，将 repo 改成真实仓库名并配置 OAuth 提供方。
+# ============================================================
+# 品川光医 · 内容后台（Decap CMS）配置
+# 前端每个版块在后台都有对应的编辑模块：
+#   网站设置 / 文案管理 / 图片管理 / 视频管理 / 资质证书 / 文献资料
+# 所有改动直接提交到 GitHub 仓库，Cloudflare Pages 自动重新部署。
+# 登录权限由 Cloudflare Access（邮箱验证码）控制，详见《后台部署配置指南》。
+# ------------------------------------------------------------
+# 部署前需替换：base_url 改为你的 OAuth 代理 Worker 地址。
+# ============================================================
+
 backend:
   name: github
-  repo: OWNER/koushicare-website   # TODO: 替换为真实仓库
+  repo: JerryYangAI/eyecare_website
   branch: main
+  base_url: https://koushi-auth.example.workers.dev   # TODO: 替换为你的 OAuth 代理 Worker 域名
+  auth_endpoint: /auth
 
+# 默认媒体目录（图片）。视频与 PDF 在各自字段单独覆盖目录。
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
+
 locale: "zh_Hans"
+site_url: https://koushicare.new-googles.com
+display_url: https://koushicare.new-googles.com
+publish_mode: simple
 
 collections:
-  - name: "home"
-    label: "首页内容"
+  # ---------------- 1. 网站设置（SEO + 首屏文案）----------------
+  - name: "site"
+    label: "网站设置"
+    description: "SEO 优化与首屏文案。让用户搜索“光敷仪 / 品川视康”时，网站能在首页正常展示。"
+    delete: false
+    editor: { preview: false }
     files:
-      - name: "hero"
-        label: "首屏"
-        file: "content/home.json"
+      - name: "settings"
+        label: "网站设置"
+        file: "content/site.json"
         fields:
-          - { name: slogan, label: Slogan, widget: string }
-          - { name: title, label: 大标题, widget: text }
-          - { name: product_name, label: 产品名, widget: string }
-          - { name: description, label: 副文, widget: text }
-          - { name: hero_image, label: 首屏配图, widget: image }
-  - name: "articles"
-    label: "科普文章 / 文献"
-    folder: "content/articles"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { name: title, label: 标题, widget: string }
-      - { name: date, label: 日期, widget: datetime }
-      - { name: summary, label: 摘要, widget: text }
-      - { name: cover, label: 封面, widget: image, required: false }
-      - { name: body, label: 正文, widget: markdown }
+          - { name: seo_title, label: "网站标题（SEO）", widget: string, hint: "必填。浏览器标签与搜索结果标题" }
+          - { name: seo_description, label: "网站介绍（SEO）", widget: text, hint: "必填。搜索结果摘要" }
+          - { name: seo_keywords, label: "关键词（SEO）", widget: text, hint: "逗号分隔" }
+          - { name: resolution, label: "首屏图建议分辨率", widget: string, required: false, default: "1920*1060px" }
+          - { name: hero_slogan, label: "首屏 · Slogan", widget: string }
+          - { name: hero_title_l1, label: "首屏 · 标题第一行", widget: string }
+          - { name: hero_title_l2, label: "首屏 · 标题第二行", widget: string }
+          - { name: hero_title_em, label: "首屏 · 标题强调词（橙色）", widget: string, hint: "需是第二行中的一段文字" }
+          - { name: hero_product_name, label: "首屏 · 产品名称", widget: string }
+          - { name: hero_description, label: "首屏 · 产品介绍", widget: text }
+          - { name: hero_tags, label: "首屏 · 底部标签", widget: list, hint: "4 个左右短标签", field: { name: tag, label: 标签, widget: string } }
+
+  # ---------------- 2. 文案管理 ----------------
+  - name: "copy"
+    label: "文案管理"
+    description: "对网站各模块的文字进行修改调整。每个字段建议 100 个汉字以内。"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "copy"
+        label: "各版块文案"
+        file: "content/copy.json"
+        fields:
+          - name: problem
+            label: "002 · 问题共鸣"
+            widget: object
+            fields:
+              - { name: eyebrow, label: 小标题, widget: string }
+              - { name: title, label: 主标题（前半）, widget: string }
+              - { name: title_em, label: 主标题强调词（橙色）, widget: string, required: false }
+              - { name: title_tail, label: 主标题（后半）, widget: string, required: false }
+              - { name: lead, label: 引导段, widget: text }
+          - name: principle
+            label: "003 · 科学原理 / 004 · 为什么是红光"
+            widget: object
+            fields:
+              - { name: eyebrow, label: 小标题, widget: string }
+              - { name: title1, label: 标题一（前半）, widget: string }
+              - { name: title1_em, label: 标题一强调词, widget: string, required: false }
+              - { name: title2, label: 标题二（前半）, widget: string }
+              - { name: title2_em, label: 标题二强调词, widget: string, required: false }
+              - { name: sci_eyebrow, label: "为什么是红光 · 小标题", widget: string }
+              - { name: sci_title, label: "为什么是红光 · 标题（前半）", widget: string }
+              - { name: sci_title_em, label: "为什么是红光 · 强调词", widget: string, required: false }
+          - name: heritage
+            label: "005 · 技术溯源"
+            widget: object
+            fields:
+              - { name: eyebrow, label: 小标题, widget: string }
+              - { name: title, label: 主标题（前半）, widget: string }
+              - { name: title_em, label: 主标题强调词, widget: string, required: false }
+              - { name: lead, label: 引导段, widget: text }
+          - name: trust
+            label: "006 · 研发与生产 / 007 · 资质与荣誉"
+            widget: object
+            fields:
+              - { name: eyebrow, label: 实力背书 · 小标题, widget: string }
+              - { name: title, label: 实力背书 · 标题（前半）, widget: string }
+              - { name: title_em, label: 实力背书 · 强调词, widget: string, required: false }
+              - { name: vmod_title, label: 生产视频 · 标题（前半）, widget: string }
+              - { name: vmod_em, label: 生产视频 · 强调词, widget: string, required: false }
+              - { name: vmod_text, label: 生产视频 · 说明, widget: text }
+              - { name: honor_eyebrow, label: 资质与荣誉 · 小标题, widget: string }
+              - { name: honor_title, label: 资质与荣誉 · 标题（前半）, widget: string }
+              - { name: honor_title_em, label: 资质与荣誉 · 强调词, widget: string, required: false }
+              - { name: honor_lead, label: 资质与荣誉 · 引导段, widget: text }
+          - name: cases
+            label: "008 · 用户反馈"
+            widget: object
+            fields:
+              - { name: eyebrow, label: 小标题, widget: string }
+              - { name: title, label: 主标题（前半）, widget: string }
+              - { name: title_em, label: 主标题强调词, widget: string, required: false }
+          - name: nav
+            label: "009 · 导航栏内容"
+            widget: object
+            fields:
+              - { name: problem, label: 菜单-为什么护眼, widget: string }
+              - { name: principle, label: 菜单-科学原理, widget: string }
+              - { name: heritage, label: 菜单-技术溯源, widget: string }
+              - { name: trust, label: 菜单-实力背书, widget: string }
+              - { name: references, label: 菜单-研究文献, widget: string }
+              - { name: faq, label: 菜单-常见问题, widget: string }
+              - { name: contact, label: 菜单-关于我们, widget: string }
+          - name: footer
+            label: "010 · 底端内容"
+            widget: object
+            fields:
+              - { name: intro, label: 底部简介, widget: text }
+              - { name: email, label: 联系邮箱, widget: string }
+              - { name: wechat, label: 微信公众号, widget: string }
+              - { name: location, label: 地址, widget: string }
+              - { name: legal, label: 合规声明（支持 <b> 加粗）, widget: text }
+
+  # ---------------- 3. 图片管理 ----------------
+  - name: "images"
+    label: "图片管理"
+    description: "对网站各模块图片进行修改调整。拖动列表可排序，可增删。"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "images"
+        label: "图片列表"
+        file: "content/images.json"
+        fields:
+          - name: items
+            label: 图片
+            widget: list
+            summary: "{{fields.id}} · {{fields.title}}"
+            fields:
+              - { name: id, label: ID, widget: string }
+              - name: key
+                label: 绑定位置（请勿随意修改）
+                widget: select
+                options:
+                  - { label: 首屏展示图, value: hero }
+                  - { label: 问题共鸣-久看屏幕, value: scene-screen }
+                  - { label: 问题共鸣-习惯性熬夜, value: scene-latenight }
+                  - { label: 问题共鸣-空调房环境, value: scene-ac }
+                  - { label: 问题共鸣-美瞳美妆, value: scene-lens }
+                  - { label: 科学原理图-泪膜结构, value: tearfilm }
+                  - { label: 研发与交付-研发, value: rnd }
+                  - { label: 研发与交付-生产, value: production2 }
+                  - { label: 研发与交付-检测, value: qc }
+              - { name: title, label: 标题, widget: string }
+              - { name: src, label: 标题图, widget: image }
+
+  # ---------------- 4. 视频管理 ----------------
+  - name: "videos"
+    label: "视频管理"
+    description: "对网站各模块视频进行修改调整。拖动列表可排序。"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "videos"
+        label: "视频列表"
+        file: "content/videos.json"
+        fields:
+          - name: items
+            label: 视频
+            widget: list
+            summary: "{{fields.id}} · {{fields.title}}"
+            fields:
+              - { name: id, label: ID, widget: string }
+              - name: key
+                label: 绑定位置（请勿随意修改）
+                widget: select
+                options:
+                  - { label: 科学原理-红光, value: redlight }
+                  - { label: 科学原理-热敷, value: heat }
+                  - { label: 研发与交付-生产实景, value: factory }
+                  - { label: 用户反馈合辑, value: reviews }
+              - { name: title, label: 标题, widget: string }
+              - { name: poster, label: 封面图, widget: image }
+              - { name: src, label: 视频文件（mp4）, widget: file, media_folder: "/videos", public_folder: "/videos" }
+
+  # ---------------- 5. 资质证书 ----------------
+  - name: "certs"
+    label: "资质证书"
+    description: "更换首屏证书图片展示。可新增图片，可拖动排序。"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "certs"
+        label: "证书列表"
+        file: "content/certs.json"
+        fields:
+          - name: items
+            label: 证书
+            widget: list
+            summary: "{{fields.id}} · {{fields.title}}"
+            fields:
+              - { name: id, label: ID, widget: string }
+              - { name: title, label: 标题, widget: string }
+              - { name: src, label: 证书图, widget: image }
+
+  # ---------------- 6. 文献资料 ----------------
+  - name: "refs"
+    label: "文献资料"
+    description: "上传对应的文献原文件（PDF，≤10M）。可新增、可排序。"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "refs"
+        label: "文献列表"
+        file: "content/refs.json"
+        fields:
+          - name: items
+            label: 文献
+            widget: list
+            summary: "{{fields.id}} · {{fields.title}}（{{fields.year}}）"
+            fields:
+              - { name: id, label: ID, widget: string }
+              - { name: title, label: 标题, widget: string }
+              - { name: year, label: 年份, widget: string }
+              - { name: file, label: 文献原文（PDF）, widget: file, required: false, media_folder: "/files", public_folder: "/files" }
