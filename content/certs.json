@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "id": "001",
+      "title": "CTI 华测检测研究报告",
+      "src": "images/certs/CTI.jpg"
+    },
+    {
+      "id": "002",
+      "title": "CE 符合性验证证书（RED 2014/53/EU）",
+      "src": "images/certs/CE.jpg"
+    },
+    {
+      "id": "003",
+      "title": "FDA 注册与列名证书",
+      "src": "images/certs/FDA.jpg"
+    },
+    {
+      "id": "004",
+      "title": "GB 4706 国家强制安全认证",
+      "src": "images/certs/GB4706.jpg"
+    },
+    {
+      "id": "005",
+      "title": "FCC 认证证书",
+      "src": "images/certs/FCC.jpg"
+    },
+    {
+      "id": "006",
+      "title": "MIC 认证证书",
+      "src": "images/certs/MIC.jpg"
+    }
+  ]
+}

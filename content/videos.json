@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "id": "001",
+      "key": "redlight",
+      "title": "科学原理-红光作用原理视频",
+      "poster": "images/poster-redlight.jpg",
+      "src": "videos/redlight.mp4"
+    },
+    {
+      "id": "002",
+      "key": "heat",
+      "title": "科学原理-热敷舒缓视频",
+      "poster": "images/poster-heat.jpg",
+      "src": "videos/heat.mp4"
+    },
+    {
+      "id": "003",
+      "key": "factory",
+      "title": "研发与交付-生产实景(9:16)",
+      "poster": "images/poster-factory.jpg",
+      "src": "videos/factory.mp4"
+    },
+    {
+      "id": "004",
+      "key": "reviews",
+      "title": "用户反馈合辑(9:16)",
+      "poster": "images/poster-reviews.jpg",
+      "src": "videos/reviews.mp4"
+    }
+  ]
+}

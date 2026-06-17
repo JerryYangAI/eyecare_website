@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "id": "001",
+      "key": "hero",
+      "title": "首屏展示图",
+      "src": "images/hero.jpg"
+    },
+    {
+      "id": "002",
+      "key": "scene-screen",
+      "title": "问题共鸣-久看屏幕",
+      "src": "images/scene-screen.jpg"
+    },
+    {
+      "id": "003",
+      "key": "scene-latenight",
+      "title": "问题共鸣-习惯性熬夜",
+      "src": "images/scene-latenight.jpg"
+    },
+    {
+      "id": "004",
+      "key": "scene-ac",
+      "title": "问题共鸣-空调房环境",
+      "src": "images/scene-ac.jpg"
+    },
+    {
+      "id": "005",
+      "key": "scene-lens",
+      "title": "问题共鸣-美瞳美妆",
+      "src": "images/scene-lens.jpg"
+    },
+    {
+      "id": "006",
+      "key": "tearfilm",
+      "title": "科学原理图-泪膜结构",
+      "src": "images/tearfilm.jpg"
+    },
+    {
+      "id": "007",
+      "key": "rnd",
+      "title": "研发与交付-研发",
+      "src": "images/rnd.jpg"
+    },
+    {
+      "id": "008",
+      "key": "production2",
+      "title": "研发与交付-生产",
+      "src": "images/production2.jpg"
+    },
+    {
+      "id": "009",
+      "key": "qc",
+      "title": "研发与交付-检测",
+      "src": "images/qc.jpg"
+    }
+  ]
+}

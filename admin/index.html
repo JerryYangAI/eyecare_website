@@ -1,5 +1,31 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>品川光医 · 内容后台</title></head><body>
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>品川光医 · 内容后台</title>
+  <style>
+    #boot{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#5b4d42;
+      max-width:520px;margin:18vh auto;text-align:center;line-height:1.8;padding:0 24px}
+    #boot h1{font-size:20px;color:#cf7d4e;margin-bottom:10px}
+    #boot small{color:#9c8c78}
+  </style>
+</head>
+<body>
+  <div id="boot">
+    <h1>品川光医 · 内容后台</h1>
+    <p>正在加载编辑器……<br><small>若长时间空白，请确认已通过邮箱验证码登录后刷新页面。</small></p>
+  </div>
+  <!-- Decap CMS 内核 -->
+  <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
+  <script>
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        var b=document.getElementById('boot');
+        if(b && document.getElementById('nc-root')) b.remove();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
