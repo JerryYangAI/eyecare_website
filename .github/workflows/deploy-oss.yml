@@ -22,8 +22,8 @@ jobs:
       - name: Sync website to OSS
         run: |
           ossutil cp -r -f --meta Cache-Control:no-cache \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "cms-auth/*" \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "cms-auth" \
             --exclude "*.md" \
             ./ oss://${{ secrets.OSS_BUCKET }}/
