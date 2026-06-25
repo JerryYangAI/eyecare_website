@@ -12,7 +12,7 @@ backend:
   name: github
   repo: JerryYangAI/eyecare_website
   branch: main
-  base_url: https://koushi-auth.huangshengbang888.workers.dev# TODO: 替换为你的 OAuth 代理 Worker 域名
+  base_url: https://koushi-auth.huangshengbang888.workers.dev
   auth_endpoint: /auth
 
 # 默认媒体目录（图片）。视频与 PDF 在各自字段单独覆盖目录。
