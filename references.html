@@ -23,7 +23,16 @@ header.nav{position:sticky;top:0;z-index:40;background:rgba(247,240,230,.92);bac
 .brand img{height:34px}
 .menu{display:flex;gap:26px;font-family:var(--head);font-size:15px}
 .menu a{color:#5b4d42}.menu a:hover{color:var(--amber)}
-@media(max-width:760px){.menu{display:none}}
+.menu-btn{display:none;background:none;border:0;font-size:26px;color:var(--ink);cursor:pointer}
+@media(max-width:760px){
+.menu{position:fixed;inset:70px 0 auto 0;background:var(--light);flex-direction:column;gap:0;padding:8px 0;border-bottom:1px solid var(--lg);display:none;z-index:39}
+.menu.open{display:flex}
+.menu a{padding:14px 24px;border-bottom:1px solid var(--lg)}
+.menu-btn{display:block}
+.nav-in{padding:0 18px}
+.tl{padding-left:22px}
+.ref{padding:18px 16px}
+}
 .head{padding:64px 0 24px}
 .eyebrow{font-family:var(--head);font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:600}
 .head h1{font-size:clamp(28px,4.6vw,42px);margin:12px 0 14px}
@@ -52,10 +61,11 @@ footer .legal{margin-top:20px;color:#a8977f;font-size:12.5px;line-height:1.7}
 <body>
 <header class="nav"><div class="nav-in">
   <a class="brand" href="index.html"><img src="images/logo-dark.png" alt="品川光医 KOUSHICARE"></a>
-  <nav class="menu">
-    <a href="index.html#principle">科学原理</a><a href="index.html#trust">研发与生产</a>
+  <nav class="menu" id="menu">
+    <a href="index.html#principle">科学原理</a><a href="index.html#trust">实力背书</a>
     <a href="references.html">研究文献</a><a href="faq.html">常见问题</a><a href="index.html#contact">关于我们</a>
   </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="菜单">☰</button>
 </div></header>
 
 <section class="head"><div class="wrap">
@@ -91,8 +101,13 @@ footer .legal{margin-top:20px;color:#a8977f;font-size:12.5px;line-height:1.7}
 
 <footer><div class="wrap">
   <img src="images/logo-light.png" alt="品川光医 KOUSHICARE">
-  <div>品川之光，温柔以待每一寸目光。 · <a href="faq.html">常见问题</a> · <a href="index.html#trust">研发与生产</a> · <a href="mailto:service@koushicare.com">service@koushicare.com</a></div>
-  <p class="legal">© 2026 品川光医 KOUSHICARE</p>
+  <div>品川之光，温柔以待每一寸目光。 · <a href="faq.html">常见问题</a> · <a href="index.html#trust">实力背书</a> · <a href="mailto:service@koushicare.com">service@koushicare.com</a></div>
+  <p class="legal">本产品为家用眼部护理/舒缓设备，非医疗器械，不用于疾病的诊断或治疗。如有眼部疾病或持续不适，请及时就医。© 2026 品川光医 KOUSHICARE</p>
 </div></footer>
+<script>
+var mb=document.getElementById('menuBtn'),mn=document.getElementById('menu');
+mb.addEventListener('click',function(){mn.classList.toggle('open')});
+mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open')})});
+</script>
 </body>
 </html>
