@@ -150,10 +150,24 @@ footer a:hover{color:var(--amber)}
   .menu.open{display:flex}
   .menu a{padding:14px 24px;border-bottom:1px solid var(--lg)}
   .menu-btn{display:block}
-  .g4,.g3,.split,.dual,.casebar,.vmod,.honors,footer .ft{grid-template-columns:1fr}
-  .casebar,.honors{grid-template-columns:1fr 1fr}
+  .g4,.g3,.split,.dual,.casebar,.vmod,.honors,.scigrid,footer .ft{grid-template-columns:1fr}
+  .casebar,.honors,.scigrid{grid-template-columns:1fr 1fr}
   .sec{padding:58px 0}
   .hero{min-height:auto;padding:36px 0}
   .hero-bg::after{background:linear-gradient(180deg,rgba(247,240,230,.84),rgba(247,240,230,.92))}
   .vframe{max-width:320px}
+  /* 移动端排版收紧，避免内容被挤压 */
+  .sci{padding:24px 18px}
+  .scigrid{gap:16px}
+  .scigrid .s .n{font-size:clamp(20px,5.5vw,26px)}
+  .panel{padding:22px 18px}
+  .dual{gap:16px}
+  .tearlabels span{font-size:12.5px}
+}
+@media(max-width:480px){
+  .wrap{padding:0 16px}
+  .scigrid,.casebar{grid-template-columns:1fr 1fr}
+  .badge{padding:10px 16px;font-size:14px}
+  .certs img{height:72px}
+  .hero .pname{font-size:14px;padding:8px 14px}
 }
