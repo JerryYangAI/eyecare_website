@@ -1,14 +1,26 @@
 User-agent: *
 Allow: /
+# AI 内容使用偏好（contentsignals.org）：允许训练、检索、作为回答输入
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 
-# AI / GEO crawlers explicitly welcomed for indexing
+# AI / GEO 爬虫显式欢迎抓取与索引
 User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
 Allow: /
 User-agent: PerplexityBot
 Allow: /
 User-agent: Google-Extended
 Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: CCBot
+Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://koushicare.new-googles.com/sitemap.xml
+Sitemap: https://www.koushicare.cn/sitemap.xml
