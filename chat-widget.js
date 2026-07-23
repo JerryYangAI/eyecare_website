@@ -43,6 +43,20 @@
     localStorage.setItem("pc_vid", vid);
   }
 
+  /* 轻量 Markdown 渲染：先转义 HTML 防注入，再转换常用记号 */
+  function pcMd(s) {
+    s = String(s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    s = s.replace(/^\s*[-*_]{3,}\s*$/gm, "");            // --- 分隔线去掉
+    s = s.replace(/^#{1,6}\s*(.+)$/gm, "<b>$1</b>");      // # 标题 → 加粗
+    s = s.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");    // **加粗**
+    s = s.replace(/`([^`]+)`/g, "$1");                     // `代码` 去反引号
+    s = s.replace(/^&gt;\s?/gm, "");                      // > 引用符号去掉
+    s = s.replace(/^\s*[-*]\s+/gm, "• ");          // - 列表 → •
+    s = s.replace(/\n{3,}/g, "\n\n");                   // 压缩多余空行
+    return s;
+  }
+
   function add(cls, text) {
     var d = document.createElement("div");
     d.className = "pc-m " + cls;
@@ -77,7 +91,7 @@
       body: JSON.stringify({ message: t, visitorId: vid }),
     })
       .then(function (r) { return r.json(); })
-      .then(function (j) { w.textContent = j.reply || "网络有点问题，请稍后再试～"; })
+      .then(function (j) { if (j.reply) { w.innerHTML = pcMd(j.reply); } else { w.textContent = "网络有点问题，请稍后再试～"; } msgs.scrollTop = msgs.scrollHeight; })
       .catch(function () { w.textContent = "网络有点问题，请稍后再试～"; })
       .finally(function () { busy = false; });
   }
