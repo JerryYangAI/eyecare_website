@@ -1,0 +1,35 @@
+name: Fetch ASR model (temporary)
+
+# 用途：品川退货录音转写。手动触发一次即可。
+# 下载阿里开源 Paraformer 中文识别模型（Apache-2.0），切块存入临时孤儿分支 asr-model-tmp。
+# 用完后删除 asr-model-tmp 分支和本文件。不影响网站主干与部署。
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download and split model
+        run: |
+          curl -L --retry 3 -o model.tar.bz2 \
+            https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-paraformer-zh-2023-09-14.tar.bz2
+          ls -la model.tar.bz2
+          mkdir -p out
+          split -b 80m model.tar.bz2 out/part_
+          sha256sum model.tar.bz2 | tee out/SHA256
+          ls -la out/
+
+      - name: Push to temp orphan branch
+        run: |
+          cd out
+          git init -b asr-model-tmp
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "temp: paraformer-zh model parts (delete after use)"
+          git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" asr-model-tmp
