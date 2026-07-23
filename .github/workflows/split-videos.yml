@@ -1,0 +1,87 @@
+name: Split review videos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/split-videos.yml"
+      - "videos/reviews.mp4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Split reviews.mp4 into 4 clips
+        run: |
+          set -e
+          ffmpeg -y -i videos/reviews.mp4 -ss 0     -to 11.2  -c:v libx264 -preset veryfast -crf 23 -c:a aac -movflags +faststart videos/reviews-1.mp4
+          ffmpeg -y -i videos/reviews.mp4 -ss 11.2  -to 19.96 -c:v libx264 -preset veryfast -crf 23 -c:a aac -movflags +faststart videos/reviews-2.mp4
+          ffmpeg -y -i videos/reviews.mp4 -ss 19.96 -to 31.93 -c:v libx264 -preset veryfast -crf 23 -c:a aac -movflags +faststart videos/reviews-3.mp4
+          ffmpeg -y -i videos/reviews.mp4 -ss 31.93           -c:v libx264 -preset veryfast -crf 23 -c:a aac -movflags +faststart videos/reviews-4.mp4
+
+      - name: Generate poster frames
+        run: |
+          set -e
+          for i in 1 2 3 4; do
+            ffmpeg -y -ss 0.3 -i videos/reviews-$i.mp4 -frames:v 1 -q:v 3 images/poster-r$i.jpg
+          done
+
+      - name: Generate favicon from logo
+        run: |
+          pip install pillow
+          python3 - <<'EOF'
+          from PIL import Image
+          im = Image.open("images/logo-dark.png").convert("RGBA")
+          mark = im.crop((75, 0, 146, 71))          # logo 中的红色星芒图标
+          canvas = Image.new("RGBA", (72, 72), (0, 0, 0, 0))
+          canvas.paste(mark, (0, 0), mark)
+          canvas.resize((64, 64), Image.LANCZOS).save("favicon.png")
+          print("favicon.png generated")
+          EOF
+
+      - name: Add favicon link to secondary pages
+        run: |
+          for f in faq.html references.html; do
+            if ! grep -q 'rel="icon"' "$f"; then
+              sed -i 's|<head>|<head>\n<link rel="icon" type="image/png" href="/favicon.png">|' "$f"
+            fi
+          done
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add videos/reviews-*.mp4 images/poster-r*.jpg favicon.png faq.html references.html
+          git diff --cached --quiet || git commit -m "chore: 自动拆分四段用户反馈视频 + 生成封面帧 + 补favicon"
+          git push
+
+      # 提交由 GITHUB_TOKEN 触发时不会级联触发 deploy-oss workflow，
+      # 因此这里直接同步一次 OSS，保证 .cn 站点也拿到新视频。
+      - name: Setup ossutil
+        continue-on-error: true
+        uses: manyuanrong/setup-ossutil@v3.0
+        with:
+          endpoint: ${{ secrets.OSS_ENDPOINT }}
+          access-key-id: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+
+      - name: Sync website to OSS
+        continue-on-error: true
+        run: |
+          ossutil cp -r -f --meta Cache-Control:no-cache \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "cms-auth" \
+            --exclude "*.md" \
+            ./ oss://${{ secrets.OSS_BUCKET }}/
