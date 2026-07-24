@@ -3,11 +3,12 @@
  * POST /api/chat  { message, visitorId }
  *
  * 双协议支持，按环境变量自动选择：
- *  A) 火山方舟零代码智能体（推荐）：配置 ARK_BOT_ID + ARK_API_KEY 即启用
+ *  A) 火山方舟零代码智能体：配置 ARK_BOT_ID + ARK_API_KEY 即启用
  *     调用 {ARK_BASE_URL}/bots/chat/completions（OpenAI 兼容格式）
  *     ARK_BASE_URL 默认 https://ark.cn-beijing.volces.com/api/v3
- *     ⚠️ 以方舟控制台应用详情"API调用"页展示的实际 endpoint 为准，不同可通过 ARK_BASE_URL 覆盖
- *  B) AgentKit 运行时（兜底）：AGENT_BASE_URL + AGENT_API_KEY（SSE 流聚合，过滤思考过程）
+ *  B) AgentKit 运行时：AGENT_BASE_URL + AGENT_API_KEY（SSE 流聚合，过滤思考过程）
+ *
+ * 出口统一经 cleanReply()：剥离思考型模型写进正文开头的自我分析前言。
  */
 
 const FALLBACK = "不好意思，系统这会儿有点忙 🙏 您可以稍后再试，或通过页面底部的联系方式找到人工客服～";
@@ -23,6 +24,39 @@ function pushHistory(vid, userMsg, botMsg) {
   const h = getHistory(vid);
   h.push({ role: "user", content: userMsg }, { role: "assistant", content: botMsg });
   historyStore.set(vid, h.slice(-MAX_TURNS * 2));
+}
+
+/**
+ * 剥离回答开头的"自言自语"前言。
+ * 思考型模型（doubao-seed 等）常把内部计划写进正文开头，如：
+ * "用户询问红光疗法是否为智商税，我将按规则提供对应资料。"
+ * "我已梳理好完整排查步骤，先确认充电宝输出规格……"
+ * 只在文首、且句子命中明确的"元叙述"特征时剥离，最多剥 5 句，防误伤正文。
+ */
+function cleanReply(text) {
+  if (!text) return text;
+  const original = text;
+  const metaSentence = new RegExp(
+    "^\\s*(?:" +
+      "用户(?:询问|咨询|反馈|提出|表示)" +          // 用户询问……
+      "|我将(?:按|先|从|给|结合|梳理|明确|说明)" +   // 我将按规则……
+      "|我已(?:经)?(?:梳理|整理|明确|核对|获得|了解)" + // 我已梳理好……
+      "|(?:按|依)(?:照)?(?:既定)?规则" +            // 按规则……
+      "|规则已明确" +
+      "|(?:退换货|政策)规则已明确" +
+      "|针对[^。！？\\n]{0,50}(?:问题|疑问)[^。！？\\n]{0,60}(?:答复|回复|回应|资料|内容)" +
+      "|接下来(?:我)?(?:会|将)" +
+      "|现在我(?:将|来)" +
+      "|需说明[^。！？\\n]{0,40}后续" +
+    ")[^。！？\\n]{0,120}[。！？]\\s*"
+  );
+  for (let i = 0; i < 5; i++) {
+    const m = text.match(metaSentence);
+    if (!m) break;
+    text = text.slice(m[0].length);
+  }
+  text = text.trim();
+  return text || original; // 全被剥空则回退原文，宁可有前言不可无回答
 }
 
 async function askArk(env, message, visitorId) {
@@ -102,7 +136,7 @@ export async function onRequestPost(context) {
     } else {
       console.error("[api/chat] no agent backend configured");
     }
-    return json({ visitorId, reply: reply || FALLBACK });
+    return json({ visitorId, reply: cleanReply(reply) || FALLBACK });
   } catch (err) {
     console.error("[api/chat] agent error:", err);
     return json({ visitorId, reply: FALLBACK });
