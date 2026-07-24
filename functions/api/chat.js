@@ -4,16 +4,17 @@
  *
  * 双协议支持，按环境变量自动选择：
  *  A) 火山方舟零代码智能体：配置 ARK_BOT_ID + ARK_API_KEY 即启用
- *     调用 {ARK_BASE_URL}/bots/chat/completions（OpenAI 兼容格式）
- *     ARK_BASE_URL 默认 https://ark.cn-beijing.volces.com/api/v3
  *  B) AgentKit 运行时：AGENT_BASE_URL + AGENT_API_KEY（SSE 流聚合，过滤思考过程）
  *
- * 出口统一经 cleanReply()：剥离思考型模型写进正文开头的自我分析前言。
+ * 出口统一经 cleanReply()：
+ *  1) 优先识别"【最终回复】"分隔符（提示词协议），只取标记之后的内容；
+ *  2) 无标记时回退启发式：剥离文首的"用户询问…/我将…"式元叙述句。
  */
 
 const FALLBACK = "不好意思，系统这会儿有点忙 🙏 您可以稍后再试，或通过页面底部的联系方式找到人工客服～";
+const REPLY_MARK = "【最终回复】";
 
-// 简易会话记忆：方舟 bot API 无服务端会话，这里按 visitorId 维护最近几轮对话（实例内存，冷启动即清空，够用）
+// 简易会话记忆：按 visitorId 维护最近几轮对话（实例内存，冷启动即清空，够用）
 const historyStore = new Map();
 const MAX_TURNS = 6;
 
@@ -26,37 +27,41 @@ function pushHistory(vid, userMsg, botMsg) {
   historyStore.set(vid, h.slice(-MAX_TURNS * 2));
 }
 
-/**
- * 剥离回答开头的"自言自语"前言。
- * 思考型模型（doubao-seed 等）常把内部计划写进正文开头，如：
- * "用户询问红光疗法是否为智商税，我将按规则提供对应资料。"
- * "我已梳理好完整排查步骤，先确认充电宝输出规格……"
- * 只在文首、且句子命中明确的"元叙述"特征时剥离，最多剥 5 句，防误伤正文。
- */
 function cleanReply(text) {
   if (!text) return text;
   const original = text;
+
+  // 1) 分隔符协议：取最后一个【最终回复】之后的内容
+  const i = text.lastIndexOf(REPLY_MARK);
+  if (i !== -1) {
+    const after = text.slice(i + REPLY_MARK.length).trim();
+    if (after) return after;
+  }
+
+  // 2) 启发式回退：剥离文首连续的元叙述句（最多5句，剥空则还原）
   const metaSentence = new RegExp(
     "^\\s*(?:" +
-      "用户(?:询问|咨询|反馈|提出|表示)" +          // 用户询问……
-      "|我将(?:按|先|从|给|结合|梳理|明确|说明)" +   // 我将按规则……
-      "|我已(?:经)?(?:梳理|整理|明确|核对|获得|了解)" + // 我已梳理好……
-      "|(?:按|依)(?:照)?(?:既定)?规则" +            // 按规则……
-      "|规则已明确" +
-      "|(?:退换货|政策)规则已明确" +
+      "用户(?:询问|咨询|反馈|提出|表示|说)" +
+      "|我将(?:按|先|从|给|结合|梳理|明确|说明)" +
+      "|我已(?:经)?(?:梳理|整理|明确|核对|获得|了解)" +
+      "|我需要(?:按照?规则|先|确认)" +
+      "|(?:按|依)(?:照)?(?:既定)?规则" +
+      "|规则(?:里|中)?(?:已明确|说|要求)" +
+      "|让我(?:先|来|按|组织)" +
+      "|好的，我来组织" +
+      "|知识库中已经?有" +
       "|针对[^。！？\\n]{0,50}(?:问题|疑问)[^。！？\\n]{0,60}(?:答复|回复|回应|资料|内容)" +
       "|接下来(?:我)?(?:会|将)" +
       "|现在我(?:将|来)" +
-      "|需说明[^。！？\\n]{0,40}后续" +
-    ")[^。！？\\n]{0,120}[。！？]\\s*"
+    ")[^。！？\\n]{0,120}[。！？：]\\s*"
   );
-  for (let i = 0; i < 5; i++) {
+  for (let k = 0; k < 5; k++) {
     const m = text.match(metaSentence);
     if (!m) break;
     text = text.slice(m[0].length);
   }
   text = text.trim();
-  return text || original; // 全被剥空则回退原文，宁可有前言不可无回答
+  return text || original;
 }
 
 async function askArk(env, message, visitorId) {
