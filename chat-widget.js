@@ -77,6 +77,11 @@
     btn.style.display = "block";
   };
 
+  // 接口分流：koushicare.cn（OSS托管）走阿里云FC代理；其余（Cloudflare Pages）走本站 /api/chat
+  var API = /(^|\.)koushicare\.cn$/.test(location.hostname)
+    ? "https://api.koushicare.cn/"
+    : "/api/chat";
+
   var busy = false;
   function send() {
     var t = inp.value.trim();
@@ -85,7 +90,7 @@
     add("pc-user", t);
     var w = add("pc-bot", "正在输入…");
     busy = true;
-    fetch("/api/chat", {
+    fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: t, visitorId: vid }),
