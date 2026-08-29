@@ -25,9 +25,11 @@ em,.amber{font-style:normal;color:var(--amber);font-weight:600}
 header.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--lg)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:70px}
 .brand img{height:36px;width:auto;display:block}
-.menu{display:flex;gap:28px;font-family:var(--head);font-size:15px}
+.menu{display:flex;gap:22px;font-family:var(--head);font-size:15px;align-items:center}
 .menu a{color:#5b4d42;transition:color .2s}
 .menu a:hover{color:var(--amber)}
+.menu .tmall-link{background:#ff5000;color:#fff;padding:7px 16px;border-radius:999px;font-weight:600;white-space:nowrap}
+.menu .tmall-link:hover{color:#fff;background:#e64800}
 .menu-btn{display:none;background:none;border:0;font-size:26px;color:var(--ink);cursor:pointer}
 
 /* HERO */
@@ -130,11 +132,25 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.9);back
 
 /* footer */
 footer{background:var(--ink);color:#e9ddca;padding:60px 0 30px;font-size:14px}
-footer .ft{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+footer .ft{display:grid;grid-template-columns:1.25fr .75fr;gap:34px 56px;align-items:start}
 footer img.logo{height:40px;width:auto;margin-bottom:16px}
 footer h4{font-family:var(--head);font-size:14px;color:#fff;margin-bottom:12px;letter-spacing:1px}
 footer a{color:#cdbfa9;display:block;margin-bottom:8px}
 footer a:hover{color:var(--amber)}
+.contact-email{font-size:16px;font-weight:600;color:#fff!important;margin-bottom:8px}
+.contact-note{max-width:520px;color:#cdbfa9;font-size:13px;line-height:1.65}
+.contact-block{grid-column:1/-1;display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1.7fr);gap:48px;align-items:start;margin-top:8px;padding-top:30px;border-top:1px solid rgba(255,255,255,.14)}
+.contact-block h4{font-size:22px;letter-spacing:.5px;margin-bottom:14px}
+.contact-qr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:0}
+.contact-qr-card{background:#fffaf2;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px;color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,.13)}
+.qr-visual{height:400px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.qr-visual img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+.qr-square img{width:min(100%,300px)}
+.qr-portrait img{height:100%}
+.contact-qr-card figcaption{padding:11px 3px 2px;line-height:1.45}
+.contact-qr-card figcaption strong{display:block;font-family:var(--head);font-size:14px;color:var(--ink)}
+.contact-qr-card figcaption span{display:block;margin-top:2px;font-size:12px;color:#756457}
+.contact-location{display:block;color:#a8977f;margin-top:20px;font-size:12.5px}
 .legal{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);color:#a8977f;font-size:12.5px;line-height:1.7}
 
 /* lightbox */
@@ -145,12 +161,23 @@ footer a:hover{color:var(--amber)}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
 
+@media(max-width:1080px){
+  .menu{position:fixed;inset:70px 0 auto 0;background:var(--light);flex-direction:column;align-items:stretch;gap:0;padding:8px 0;border-bottom:1px solid var(--lg);display:none;max-height:calc(100vh - 70px);overflow-y:auto}
+  .menu.open{display:flex}
+  .menu a{padding:14px 24px;border-bottom:1px solid var(--lg)}
+  .menu .tmall-link{margin:8px 18px;padding:12px 18px;text-align:center;border-bottom:0}
+  .menu-btn{display:block}
+}
+
 @media(max-width:860px){
   .menu{position:fixed;inset:70px 0 auto 0;background:var(--light);flex-direction:column;gap:0;padding:8px 0;border-bottom:1px solid var(--lg);display:none}
   .menu.open{display:flex}
   .menu a{padding:14px 24px;border-bottom:1px solid var(--lg)}
+  .menu .tmall-link{margin:8px 18px;padding:12px 18px;text-align:center;border-bottom:0}
   .menu-btn{display:block}
   .g4,.g3,.split,.dual,.casebar,.vmod,.honors,.scigrid,footer .ft{grid-template-columns:1fr}
+  .contact-block{grid-template-columns:1fr;gap:22px}
+  .qr-visual{height:360px}
   .casebar,.honors,.scigrid{grid-template-columns:1fr 1fr}
   .sec{padding:58px 0}
   .hero{min-height:auto;padding:36px 0}
@@ -170,4 +197,7 @@ footer a:hover{color:var(--amber)}
   .badge{padding:10px 16px;font-size:14px}
   .certs img{height:72px}
   .hero .pname{font-size:14px;padding:8px 14px}
+  .contact-qr-grid{grid-template-columns:1fr}
+  .qr-visual{height:340px}
+  .qr-square img{width:min(100%,280px)}
 }

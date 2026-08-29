@@ -11,7 +11,7 @@
 <meta property="og:description" content="低能量红光在眼部护理领域的研究脉络与文献参考。">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Lora:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Lora:wght@400;500;600&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root{--ink:#3a2e26;--light:#f7f0e6;--paper:#fffaf2;--mid:#b9a892;--lg:#ebe0cd;--amber:#cf7d4e;--coral:#c2584c;--head:'Fraunces','Noto Serif SC',serif;--body:'Lora','Noto Serif SC',serif}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
@@ -22,13 +22,17 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.3px}
 header.nav{position:sticky;top:0;z-index:40;background:rgba(247,240,230,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--lg)}
 .nav-in{max-width:1160px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:70px}
 .brand img{height:34px}
-.menu{display:flex;gap:26px;font-family:var(--head);font-size:15px}
+.menu{display:flex;gap:18px;align-items:center;font-family:var(--head);font-size:14px}
 .menu a{color:#5b4d42}.menu a:hover{color:var(--amber)}
+.menu a[aria-current="page"]{color:var(--amber);font-weight:600}
+.menu .tmall-link{background:#ff5000;color:#fff;padding:7px 14px;border-radius:999px;font-weight:600;white-space:nowrap}
+.menu .tmall-link:hover{color:#fff;background:#e64800}
 .menu-btn{display:none;background:none;border:0;font-size:26px;color:var(--ink);cursor:pointer}
-@media(max-width:760px){
+@media(max-width:1080px){
 .menu{position:fixed;inset:70px 0 auto 0;background:var(--light);flex-direction:column;gap:0;padding:8px 0;border-bottom:1px solid var(--lg);display:none;z-index:39}
 .menu.open{display:flex}
 .menu a{padding:14px 24px;border-bottom:1px solid var(--lg)}
+.menu .tmall-link{margin:8px 18px;text-align:center}
 .menu-btn{display:block}
 .nav-in{padding:0 18px}
 .tl{padding-left:22px}
@@ -63,8 +67,9 @@ footer .legal{margin-top:20px;color:#a8977f;font-size:12.5px;line-height:1.7}
 <header class="nav"><div class="nav-in">
   <a class="brand" href="index.html"><img src="images/logo-dark.png" alt="品川光医 KOUSHICARE"></a>
   <nav class="menu" id="menu">
-    <a href="index.html#principle">科学原理</a><a href="index.html#trust">实力背书</a>
-    <a href="references.html">研究文献</a><a href="faq.html">常见问题</a><a href="index.html#contact">关于我们</a>
+    <a href="index.html#problem">为什么护眼</a><a href="index.html#principle">科学原理</a><a href="index.html#heritage">技术溯源</a><a href="index.html#trust">实力背书</a>
+    <a href="references.html" aria-current="page">研究文献</a><a href="/cn/evidence.html">技术对比</a><a href="faq.html">常见问题</a><a href="index.html#contact">关于我们</a>
+    <a class="tmall-link" href="https://detail.tmall.com/item.htm?id=959177917948&amp;skuId=5924590204482" target="_blank" rel="noopener">天猫旗舰店</a>
   </nav>
   <button class="menu-btn" id="menuBtn" aria-label="菜单">☰</button>
 </div></header>
@@ -102,7 +107,7 @@ footer .legal{margin-top:20px;color:#a8977f;font-size:12.5px;line-height:1.7}
 
 <footer><div class="wrap">
   <img src="images/logo-light.png" alt="品川光医 KOUSHICARE">
-  <div>品川之光，温柔以待每一寸目光。 · <a href="faq.html">常见问题</a> · <a href="index.html#trust">实力背书</a> · <a href="mailto:service@koushicare.com">service@koushicare.com</a></div>
+  <div>品川之光，温柔以待每一寸目光。 · <a href="faq.html">常见问题</a> · <a href="index.html#trust">实力背书</a> · <a href="mailto:sales@koushicare.com">sales@koushicare.com</a></div>
   <p class="legal">本产品为家用眼部护理/舒缓设备，非医疗器械，不用于疾病的诊断或治疗。如有眼部疾病或持续不适，请及时就医。© 2026 品川光医 KOUSHICARE</p>
 </div></footer>
 <script type="application/ld+json">
@@ -110,8 +115,9 @@ footer .legal{margin-top:20px;color:#a8977f;font-size:12.5px;line-height:1.7}
 </script>
 <script>
 var mb=document.getElementById('menuBtn'),mn=document.getElementById('menu');
-mb.addEventListener('click',function(){mn.classList.toggle('open')});
-mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open')})});
+mb.setAttribute('aria-expanded','false');
+mb.addEventListener('click',function(){mn.classList.toggle('open');mb.setAttribute('aria-expanded',mn.classList.contains('open')?'true':'false')});
+mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');mb.setAttribute('aria-expanded','false')})});
 </script>
 </body>
 </html>
