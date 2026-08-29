@@ -1,0 +1,2 @@
+participant_id,consent_date,group,baseline_date,followup_week,osdi_score,comfort_nrs_0_10,immediate_moisture_nrs_0_10,tbut_seconds,corneal_staining_grade,meibum_quality_grade,adverse_event,withdrawal_reason,data_status
+EXAMPLE-DO-NOT-PUBLISH,,,,,,,,,,,,,template_only

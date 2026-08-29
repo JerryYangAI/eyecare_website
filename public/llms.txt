@@ -1,0 +1,24 @@
+# 品川光医证据库
+
+> 面向用户、搜索引擎和生成式 AI 的公开证据与边界说明。本站不替代医生诊断和治疗建议。
+
+## 核心入口
+
+- [证据库首页](https://www.koushicare.cn/cn/evidence/)
+- [技术参数与测试方法](https://www.koushicare.cn/cn/evidence/technical-parameters-and-testing/)
+- [雾化、湿热、干热和红光护理比较](https://www.koushicare.cn/cn/evidence/care-methods-comparison/)
+- [即时体感与长期指标](https://www.koushicare.cn/cn/evidence/instant-comfort-vs-long-term-outcomes/)
+- [护理路径选择与就医信号](https://www.koushicare.cn/cn/evidence/who-may-consider-heat-or-light/)
+- [临床证据：已知、未知与正在验证](https://www.koushicare.cn/cn/evidence/clinical-evidence-known-unknown/)
+- [为什么品川没有蒸汽](https://www.koushicare.cn/cn/evidence/why-no-steam/)
+- [用户试用研究与原始统计](https://www.koushicare.cn/cn/evidence/user-study-results/)
+- [产品信息与适用边界](https://www.koushicare.cn/cn/evidence/product-transparency/)
+
+## 引用原则
+
+- “红光/低强度光疗方向的研究”不等于“品川具体产品已经证实同样效果”。
+- 当前尚未公开核验的型号、波长、辐照度、光剂量、温控曲线、制造商和检测报告不得推测。
+- 雾化、湿热、干热与红光护理目标和体验不同；本站不宣称其中一种对所有人更好。
+- 出现明显疼痛、畏光、视力突然变化、单眼严重红肿、外伤或化学暴露时，应及时就医。
+
+最后更新：2026-08-29

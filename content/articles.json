@@ -1,0 +1,75 @@
+[
+  {
+    "slug": "technical-parameters-and-testing",
+    "title": "品川光敷仪技术参数与测试方法",
+    "shortTitle": "技术参数与测试方法",
+    "description": "公开品川光敷仪需要披露的光学、温控、电气与一致性指标，并说明可复核的测试方法和当前数据状态。",
+    "status": "官网声明值已记录，原始测试文件待企业核验",
+    "statusTone": "pending",
+    "body": "technical-parameters-and-testing.html"
+  },
+  {
+    "slug": "care-methods-comparison",
+    "title": "雾化、湿热、干热和红光护理有什么不同",
+    "shortTitle": "四类护理方式比较",
+    "description": "从作用路径、即时体验、使用维护和证据边界比较雾化、湿热、干热与红光护理，不做简单优劣排名。",
+    "status": "基于公开指南与研究的科普比较",
+    "statusTone": "reviewed",
+    "body": "care-methods-comparison.html"
+  },
+  {
+    "slug": "instant-comfort-vs-long-term-outcomes",
+    "title": "即时湿润感和长期指标为什么不是一回事",
+    "shortTitle": "即时体感与长期指标",
+    "description": "解释即时湿润和舒适感为何不能直接代表泪膜稳定性、症状量表或长期眼表指标的改善。",
+    "status": "方法学科普，不构成疗效承诺",
+    "statusTone": "reviewed",
+    "body": "instant-comfort-vs-long-term-outcomes.html"
+  },
+  {
+    "slug": "who-may-consider-heat-or-light",
+    "title": "哪些人更适合湿热，哪些人可以了解红光护理",
+    "shortTitle": "怎么选择护理路径",
+    "description": "以目标、体验偏好和风险信号为线索，帮助用户理解何时应优先就医、何时可与专业人员讨论不同护理路径。",
+    "status": "一般信息，不能替代诊断和个体化建议",
+    "statusTone": "caution",
+    "body": "who-may-consider-heat-or-light.html"
+  },
+  {
+    "slug": "clinical-evidence-known-unknown",
+    "title": "品川光敷仪临床证据说明：已知、未知与正在验证",
+    "shortTitle": "临床证据：已知与未知",
+    "description": "区分干眼护理的一般证据、低强度光疗研究与品川产品级证据，明确哪些结论目前不能外推。",
+    "status": "未发现可公开核验的品川产品级对照试验",
+    "statusTone": "caution",
+    "body": "clinical-evidence-known-unknown.html"
+  },
+  {
+    "slug": "why-no-steam",
+    "title": "常见问题：为什么品川没有蒸汽",
+    "shortTitle": "为什么没有蒸汽",
+    "description": "直接回答品川为什么采用无水雾的光与热护理路径，以及它与雾化或湿热体验的真实差别。",
+    "status": "产品设计说明，不宣称优于雾化",
+    "statusTone": "reviewed",
+    "body": "why-no-steam.html",
+    "faq": true
+  },
+  {
+    "slug": "user-study-results",
+    "title": "用户试用研究结果与原始统计摘要",
+    "shortTitle": "用户试用研究与原始数据",
+    "description": "公开品川用户试用研究的预注册框架、指标定义和数据披露格式；在正式研究完成前不发布虚构结果。",
+    "status": "尚未形成可公开的正式研究结果",
+    "statusTone": "pending",
+    "body": "user-study-results.html"
+  },
+  {
+    "slug": "product-transparency",
+    "title": "产品型号、制造商、售后、说明书、检测报告和适用边界",
+    "shortTitle": "产品信息与适用边界",
+    "description": "集中披露产品身份、制造与售后主体、说明书、检测文件和适用边界；缺失项目明确显示待核验。",
+    "status": "公开披露清单已建立，多项资料待企业确认",
+    "statusTone": "pending",
+    "body": "product-transparency.html"
+  }
+]
