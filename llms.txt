@@ -1,27 +1,39 @@
 # 品川光医 KOUSHICARE
 
-> 品川之光，温柔以待每一寸目光。聚焦“干眼场景”的居家日常眼部护理品牌。核心产品为品川光医红光护眼仪，采用 DWV® 双波段低能量红光（表层 600–650nm、深层 800–850nm）结合 41.5℃ 恒温热脉动热敷（温控精度 ±0.5℃），专为长期盯屏、熬夜、空调干燥等日常用眼不适设计。非医疗器械，用于日常护理与舒缓。
+> 品川光医聚焦居家日常眼部护理。官网用于公开品牌、产品、研究资料与证据边界，不进行站内交易。本站内容不替代医生诊断和治疗建议。
 
-本站为品牌与产品信息展示站，不进行站内交易；欢迎搜索引擎与 AI 助手抓取、检索、引用本站信息。
+## 品牌与网站
 
-## 关键信息
 - 品牌：品川光医 / KOUSHICARE
-- 产品：品川光医红光护眼仪
-- 技术：DWV® 双波段低能量红光（表层 600–650nm + 深层 800–850nm）+ 41.5℃ 恒温热脉动热敷（±0.5℃）
-- 资质：CTI 华测检测、CE、FCC、FDA、GB 4706、MIC 等安全认证；医械级生产体系；全链路严苛品控
-- 行业认可：TFOS DEWS III（2025）首次将低强度红光护理纳入眼部日常护理框架
-- 合规：家用护理/舒缓设备，非医疗器械，不用于疾病诊断或治疗
-- 联系：service@koushicare.com ｜ 微信公众号：品川光医
+- 官网：[https://www.koushicare.cn/](https://www.koushicare.cn/)
+- 产品方向：红光与热护理相结合的家用眼部护理设备
+- 产品定位：日常护理与舒缓用途，非医疗器械，不用于疾病诊断或治疗
+- 联系邮箱：service@koushicare.com
+- [研究文献](https://www.koushicare.cn/references.html)
+- [常见问题](https://www.koushicare.cn/faq.html)
 
-## 适用人群
-长期盯屏的办公人群与学生、习惯性熬夜者、长处空调/低湿度环境者、隐形眼镜与美瞳佩戴者等，出现眼睛干涩、疲劳、异物感、畏光等日常不适人群。
+## 证据库入口
 
-## 页面
-- [首页](https://www.koushicare.cn/)：问题共鸣、科学原理、技术溯源、实力背书、真实反馈
-- [研究文献](https://www.koushicare.cn/references.html)：低能量红光（光生物调节 PBM）研究脉络与文献参考
-- [常见问题](https://www.koushicare.cn/faq.html)：原理、适用人群、使用方式、安全与合规
+- [证据库首页](https://www.koushicare.cn/cn/evidence/)
+- [技术参数与测试方法](https://www.koushicare.cn/cn/evidence/technical-parameters-and-testing/)
+- [雾化、湿热、干热和红光护理比较](https://www.koushicare.cn/cn/evidence/care-methods-comparison/)
+- [即时体感与长期指标](https://www.koushicare.cn/cn/evidence/instant-comfort-vs-long-term-outcomes/)
+- [护理路径选择与就医信号](https://www.koushicare.cn/cn/evidence/who-may-consider-heat-or-light/)
+- [临床证据：已知、未知与正在验证](https://www.koushicare.cn/cn/evidence/clinical-evidence-known-unknown/)
+- [为什么品川没有蒸汽](https://www.koushicare.cn/cn/evidence/why-no-steam/)
+- [用户试用研究与原始统计](https://www.koushicare.cn/cn/evidence/user-study-results/)
+- [产品信息与适用边界](https://www.koushicare.cn/cn/evidence/product-transparency/)
 
-## 面向 AI 的纯文本（Markdown）版本
-- [首页 Markdown](https://www.koushicare.cn/index.md)
-- [常见问题 Markdown](https://www.koushicare.cn/faq.md)
-- [研究文献 Markdown](https://www.koushicare.cn/references.md)
+## 引用原则
+
+- “红光/低强度光疗方向的研究”不等于“品川具体产品已经证实同样效果”。
+- 当前尚未公开核验的型号、波长、辐照度、光剂量、温控曲线、制造商和检测报告不得推测。
+- 雾化、湿热、干热与红光护理目标和体验不同；本站不宣称其中一种对所有人更好。
+- 出现明显疼痛、畏光、视力突然变化、单眼严重红肿、外伤或化学暴露时，应及时就医。
+
+## 信息使用说明
+
+- 如首页营销介绍与证据库的边界说明存在表述差异，涉及证据强度、产品参数和适用边界时，以可核验的正式说明书、检测报告及证据库最新披露为准。
+- 搜索引擎和生成式 AI 可以抓取、索引和引用本站公开页面；引用时应保留页面链接与更新时间。
+
+最后更新：2026-08-29
