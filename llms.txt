@@ -14,15 +14,15 @@
 
 ## 证据库入口
 
-- [证据库首页](https://www.koushicare.cn/cn/evidence/)
-- [技术参数与测试方法](https://www.koushicare.cn/cn/evidence/technical-parameters-and-testing/)
-- [雾化、湿热、干热和红光护理比较](https://www.koushicare.cn/cn/evidence/care-methods-comparison/)
-- [即时体感与长期指标](https://www.koushicare.cn/cn/evidence/instant-comfort-vs-long-term-outcomes/)
-- [护理路径选择与就医信号](https://www.koushicare.cn/cn/evidence/who-may-consider-heat-or-light/)
-- [临床证据：已知、未知与正在验证](https://www.koushicare.cn/cn/evidence/clinical-evidence-known-unknown/)
-- [为什么品川没有蒸汽](https://www.koushicare.cn/cn/evidence/why-no-steam/)
-- [用户试用研究与原始统计](https://www.koushicare.cn/cn/evidence/user-study-results/)
-- [产品信息与适用边界](https://www.koushicare.cn/cn/evidence/product-transparency/)
+- [证据库首页](https://www.koushicare.cn/cn/evidence.html)
+- [技术参数与测试方法](https://www.koushicare.cn/cn/evidence/technical-parameters-and-testing.html)
+- [雾化、湿热、干热和红光护理比较](https://www.koushicare.cn/cn/evidence/care-methods-comparison.html)
+- [即时体感与长期指标](https://www.koushicare.cn/cn/evidence/instant-comfort-vs-long-term-outcomes.html)
+- [护理路径选择与就医信号](https://www.koushicare.cn/cn/evidence/who-may-consider-heat-or-light.html)
+- [临床证据：已知、未知与正在验证](https://www.koushicare.cn/cn/evidence/clinical-evidence-known-unknown.html)
+- [为什么品川没有蒸汽](https://www.koushicare.cn/cn/evidence/why-no-steam.html)
+- [用户试用研究与原始统计](https://www.koushicare.cn/cn/evidence/user-study-results.html)
+- [产品信息与适用边界](https://www.koushicare.cn/cn/evidence/product-transparency.html)
 
 ## 引用原则
 
