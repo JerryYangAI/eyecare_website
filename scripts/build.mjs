@@ -41,14 +41,14 @@ function layout({ title, description, canonical, body, schema = [], pageClass = 
   <a class="skip-link" href="#main">跳到正文</a>
   <header class="site-header">
     <div class="shell header-inner">
-      <a class="brand" href="/cn/evidence/" aria-label="品川光医证据库首页">
+      <a class="brand" href="/cn/evidence.html" aria-label="品川光医证据库首页">
         <span class="brand-mark" aria-hidden="true">光</span>
         <span><strong>品川光医</strong><small>证据库</small></span>
       </a>
       <nav aria-label="主要导航">
         <a href="/">品牌首页</a>
-        <a href="/cn/evidence/">证据库</a>
-        <a href="/cn/evidence/product-transparency/">产品信息</a>
+        <a href="/cn/evidence.html">证据库</a>
+        <a href="/cn/evidence/product-transparency.html">产品信息</a>
         <a href="mailto:${escapeHtml(site.contactEmail)}">联系与售后</a>
       </nav>
     </div>
@@ -85,7 +85,7 @@ function articleSchema(article, canonical) {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "首页", item: `${site.siteUrl}/` },
-        { "@type": "ListItem", position: 2, name: "证据库", item: `${site.siteUrl}/cn/evidence/` },
+        { "@type": "ListItem", position: 2, name: "证据库", item: `${site.siteUrl}/cn/evidence.html` },
         { "@type": "ListItem", position: 3, name: article.shortTitle, item: canonical }
       ]
     }
@@ -121,18 +121,18 @@ await mkdir(dist, { recursive: true });
 await cp(path.join(root, "public"), dist, { recursive: true });
 
 for (const article of articles) {
-  const pathname = `/cn/evidence/${article.slug}/`;
+  const pathname = `/cn/evidence/${article.slug}.html`;
   const canonical = canonicalFor(pathname);
   const fragment = await readFile(path.join(root, "content/articles", article.body), "utf8");
   const related = articles
     .filter((candidate) => candidate.slug !== article.slug)
     .slice(0, 3)
-    .map((candidate) => `<a class="related-card" href="/cn/evidence/${candidate.slug}/"><span>${escapeHtml(candidate.shortTitle)}</span><small>${escapeHtml(candidate.description)}</small></a>`)
+    .map((candidate) => `<a class="related-card" href="/cn/evidence/${candidate.slug}.html"><span>${escapeHtml(candidate.shortTitle)}</span><small>${escapeHtml(candidate.description)}</small></a>`)
     .join("");
   const body = `<main id="main">
     <section class="article-hero">
       <div class="shell article-shell">
-        <nav class="breadcrumbs" aria-label="面包屑"><a href="/">首页</a><span>/</span><a href="/cn/evidence/">证据库</a><span>/</span><span>${escapeHtml(article.shortTitle)}</span></nav>
+        <nav class="breadcrumbs" aria-label="面包屑"><a href="/">首页</a><span>/</span><a href="/cn/evidence.html">证据库</a><span>/</span><span>${escapeHtml(article.shortTitle)}</span></nav>
         <p class="eyebrow">证据与边界说明</p>
         <h1>${escapeHtml(article.title)}</h1>
         <p class="dek">${escapeHtml(article.description)}</p>
@@ -150,20 +150,20 @@ for (const article of articles) {
     <section class="related shell"><h2>继续阅读</h2><div class="related-grid">${related}</div></section>
   </main>`;
   const html = layout({ title: article.title, description: article.description, canonical, body, schema: articleSchema(article, canonical), pageClass: "article-page" });
-  const outputDir = path.join(dist, "cn", "evidence", article.slug);
+  const outputDir = path.join(dist, "cn", "evidence");
   await mkdir(outputDir, { recursive: true });
-  await writeFile(path.join(outputDir, "index.html"), html);
+  await writeFile(path.join(outputDir, `${article.slug}.html`), html);
 }
 
 const cards = articles.map((article, index) => `<article class="evidence-card">
   <div class="card-number">${String(index + 1).padStart(2, "0")}</div>
-  <h2><a href="/cn/evidence/${article.slug}/">${escapeHtml(article.shortTitle)}</a></h2>
+  <h2><a href="/cn/evidence/${article.slug}.html">${escapeHtml(article.shortTitle)}</a></h2>
   <p>${escapeHtml(article.description)}</p>
   <div class="status compact ${escapeHtml(article.statusTone)}"><span aria-hidden="true"></span>${escapeHtml(article.status)}</div>
-  <a class="text-link" href="/cn/evidence/${article.slug}/">阅读完整说明 <span aria-hidden="true">→</span></a>
+  <a class="text-link" href="/cn/evidence/${article.slug}.html">阅读完整说明 <span aria-hidden="true">→</span></a>
 </article>`).join("");
 
-const hubCanonical = canonicalFor("/cn/evidence/");
+const hubCanonical = canonicalFor("/cn/evidence.html");
 const hubSchema = [
   {
     "@context": "https://schema.org",
@@ -181,7 +181,7 @@ const hubSchema = [
       "@type": "ListItem",
       position: index + 1,
       name: article.title,
-      url: `${site.siteUrl}/cn/evidence/${article.slug}/`
+      url: `${site.siteUrl}/cn/evidence/${article.slug}.html`
     }))
   }
 ];
@@ -192,14 +192,14 @@ const hubBody = `<main id="main">
       <div class="principles"><strong>我们的三条公开原则</strong><ol><li><span>01</span>来源可点击</li><li><span>02</span>未知不猜测</li><li><span>03</span>研究不越界</li></ol></div>
     </div>
   </section>
-  <section class="shell intro-band"><div><strong>当前最重要的事实</strong><p>目前没有可公开核验的品川产品级随机对照试验，因此不能宣称品川已被证明优于雾化、湿热或其他设备。</p></div><a href="/cn/evidence/clinical-evidence-known-unknown/">查看证据边界</a></section>
+  <section class="shell intro-band"><div><strong>当前最重要的事实</strong><p>目前没有可公开核验的品川产品级随机对照试验，因此不能宣称品川已被证明优于雾化、湿热或其他设备。</p></div><a href="/cn/evidence/clinical-evidence-known-unknown.html">查看证据边界</a></section>
   <section class="shell evidence-section"><div class="section-heading"><p class="eyebrow">公开资料</p><h2>8 个问题，一次说清楚</h2></div><div class="evidence-grid">${cards}</div></section>
   <section class="shell method-section"><div><p class="eyebrow">HOW WE REVIEW</p><h2>证据强度取决于研究设计，不取决于文案语气</h2></div><div class="method-list"><div><span>A</span><strong>产品级对照证据</strong><p>与具体型号、参数和使用方法一致的预注册对照研究。</p></div><div><span>B</span><strong>同类技术研究</strong><p>只能支持“值得研究”，不能自动证明品川获得相同结果。</p></div><div><span>C</span><strong>用户体验与个案</strong><p>适合发现问题和提出假设，不能单独证明因果或优越性。</p></div></div></section>
 </main>`;
-await mkdir(path.join(dist, "cn", "evidence"), { recursive: true });
-await writeFile(path.join(dist, "cn", "evidence", "index.html"), layout({ title: site.siteName, description: "品川光医公开证据库：技术参数、护理方式比较、临床证据边界、用户研究和产品信息披露。", canonical: hubCanonical, body: hubBody, schema: hubSchema, pageClass: "hub-page" }));
+await mkdir(path.join(dist, "cn"), { recursive: true });
+await writeFile(path.join(dist, "cn", "evidence.html"), layout({ title: site.siteName, description: "品川光医公开证据库：技术参数、护理方式比较、临床证据边界、用户研究和产品信息披露。", canonical: hubCanonical, body: hubBody, schema: hubSchema, pageClass: "hub-page" }));
 
-const sitemapUrls = ["/", "/references.html", "/faq.html", "/cn/evidence/", ...articles.map((article) => `/cn/evidence/${article.slug}/`)];
+const sitemapUrls = ["/", "/references.html", "/faq.html", "/cn/evidence.html", ...articles.map((article) => `/cn/evidence/${article.slug}.html`)];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.map((pathname) => `  <url><loc>${canonicalFor(pathname)}</loc><lastmod>${site.updated}</lastmod></url>`).join("\n")}\n</urlset>\n`;
 await writeFile(path.join(dist, "sitemap.xml"), sitemap);
 

@@ -53,7 +53,7 @@ if (!robots.includes(`Sitemap: ${site.siteUrl}/sitemap.xml`)) failures.push("rob
 if (!robots.includes("OAI-SearchBot")) failures.push("robots.txt: OAI-SearchBot missing");
 
 const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8");
-if (!sitemap.includes(`${site.siteUrl}/cn/evidence/`)) failures.push("sitemap.xml: evidence hub missing");
+if (!sitemap.includes(`${site.siteUrl}/cn/evidence.html`)) failures.push("sitemap.xml: evidence hub missing");
 
 if (failures.length) {
   console.error(failures.join("\n"));
