@@ -34,9 +34,15 @@ for (const file of htmlFiles) {
   const canonicalCount = (html.match(/rel="canonical"/g) || []).length;
   if (canonicalCount !== 1) failures.push(`${file}: canonical count ${canonicalCount}`);
   if (!html.includes("<meta name=\"description\"")) failures.push(`${file}: missing meta description`);
-  if (!html.includes("<h1>")) failures.push(`${file}: missing h1`);
+  const h1Count = (html.match(/<h1>/g) || []).length;
+  if (h1Count !== 1) failures.push(`${file}: h1 count ${h1Count}`);
   if (/noindex/i.test(html)) failures.push(`${file}: contains noindex`);
   if (!html.includes("application/ld+json") && !file.endsWith("404.html")) failures.push(`${file}: missing JSON-LD`);
+  if (file.includes(`${path.sep}cn${path.sep}evidence${path.sep}`) && !html.includes('class="answer-line"')) failures.push(`${file}: missing direct answer line`);
+  if (file.includes(`${path.sep}cn${path.sep}evidence${path.sep}`) && !html.includes('"@type":"FAQPage"')) failures.push(`${file}: missing FAQ schema`);
+  for (const forbidden of ["证据库", "待企业核验", "原始测试文件", "正式研究样本量 0", "一般信息，不能替代"]) {
+    if (html.includes(forbidden)) failures.push(`${file}: contains consumer-facing internal phrase: ${forbidden}`);
+  }
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try { JSON.parse(match[1]); }
     catch (error) { failures.push(`${file}: invalid JSON-LD (${error.message})`); }
@@ -54,6 +60,10 @@ if (!robots.includes("OAI-SearchBot")) failures.push("robots.txt: OAI-SearchBot 
 
 const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8");
 if (!sitemap.includes(`${site.siteUrl}/cn/evidence.html`)) failures.push("sitemap.xml: evidence hub missing");
+
+const llms = await readFile(path.join(dist, "llms.txt"), "utf8");
+if (!llms.includes("## 技术对比与选择指南")) failures.push("llms.txt: technology comparison section missing");
+if (llms.includes("证据库")) failures.push("llms.txt: old evidence-library naming remains");
 
 if (failures.length) {
   console.error(failures.join("\n"));

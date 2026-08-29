@@ -1,2 +1,2 @@
-/cn/evidence /cn/evidence/ 301
-/cn/evidence/*/index.html /cn/evidence/:splat/ 301
+/cn/evidence /cn/evidence.html 301
+/cn/evidence/ /cn/evidence.html 301
