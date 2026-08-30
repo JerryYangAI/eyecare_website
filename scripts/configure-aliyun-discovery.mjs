@@ -1,7 +1,7 @@
 import {execFileSync} from "node:child_process";
 import {readFile} from "node:fs/promises";
 import {
-  CDN_DOMAIN, DNS_DOMAIN, DNS_RR, DNS_TYPE, DNS_VALUE, EDGE_NAME,
+  CDN_DOMAIN, DNS_DOMAIN, DNS_PRIORITY, DNS_RR, DNS_TYPE, DNS_VALUE, EDGE_NAME,
   edgeFunctionPayload, recordsFromResponse, configsFromResponse, assertNoDnsConflict
 } from "./aliyun-discovery-lib.mjs";
 
@@ -76,6 +76,7 @@ function configureDns() {
     DomainName: DNS_DOMAIN,
     RR: DNS_RR,
     Type: DNS_TYPE,
+    Priority: DNS_PRIORITY,
     Value: DNS_VALUE,
     TTL: 600
   });

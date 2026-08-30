@@ -2,7 +2,8 @@ export const CDN_DOMAIN = "www.koushicare.cn";
 export const DNS_DOMAIN = "koushicare.cn";
 export const DNS_RR = "_index._agents";
 export const DNS_TYPE = "SVCB";
-export const DNS_VALUE = "1 eyecare-website.pages.dev. alpn=\"h2\" port=443 key65480=\"/mcp\"";
+export const DNS_PRIORITY = 1;
+export const DNS_VALUE = "eyecare-website.pages.dev. alpn=\"h2\" port=\"443\" key65480=\"/mcp\"";
 export const EDGE_NAME = "koushicare_agent_ready";
 
 export function edgeFunctionPayload(rule) {
@@ -31,7 +32,7 @@ export function configsFromResponse(response) {
 
 export function assertNoDnsConflict(records) {
   const matching = records.filter((record) => record.RR === DNS_RR && record.Type === DNS_TYPE);
-  if (matching.some((record) => record.Value === DNS_VALUE && record.Status !== "Disable")) return "present";
+  if (matching.some((record) => Number(record.Priority) === DNS_PRIORITY && record.Value === DNS_VALUE && record.Status !== "Disable")) return "present";
   if (matching.length) throw new Error(`Refusing to replace a pre-existing ${DNS_RR} ${DNS_TYPE} record`);
   return "missing";
 }
