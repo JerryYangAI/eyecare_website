@@ -7,10 +7,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Strict local validation and tests
+        run: npm run qa
 
       - name: Setup ossutil
         uses: manyuanrong/setup-ossutil@v3.0
@@ -19,11 +28,68 @@ jobs:
           access-key-id: ${{ secrets.OSS_ACCESS_KEY_ID }}
           access-key-secret: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
 
-      - name: Sync website to OSS
+      - name: Upload public website to OSS
         run: |
           ossutil cp -r -f --meta Cache-Control:no-cache \
             --exclude ".git" \
             --exclude ".github" \
+            --exclude ".gstack" \
+            --exclude ".well-known" \
+            --exclude "agent-api" \
             --exclude "cms-auth" \
-            --exclude "*.md" \
+            --exclude "edge" \
+            --exclude "scripts" \
+            --exclude "tests" \
+            --exclude "package.json" \
+            --exclude "package-lock.json" \
+            --exclude "qa-report.md" \
+            --exclude "README.md" \
+            --exclude "后台部署配置指南.md" \
             ./ oss://${{ secrets.OSS_BUCKET }}/
+
+      - name: Upload agent discovery artifacts with explicit MIME types
+        run: |
+          ossutil cp -r -f --meta Cache-Control:no-cache \
+            ./.well-known/ oss://${{ secrets.OSS_BUCKET }}/.well-known/
+          ossutil cp -f --meta Cache-Control:no-cache#Content-Type:application/linkset+json \
+            ./.well-known/api-catalog oss://${{ secrets.OSS_BUCKET }}/.well-known/api-catalog
+          ossutil cp -f --meta Cache-Control:no-cache#Content-Type:text/markdown \
+            ./index.md oss://${{ secrets.OSS_BUCKET }}/index.md
+
+      - name: Install Serverless Devs and Alibaba Cloud SDK
+        run: |
+          npm install --global @serverless-devs/s@3
+          npm install --no-save @alicloud/fc20230330@4.8.2 @alicloud/openapi-client@0.3.3
+
+      - name: Deploy read-only MCP
+        env:
+          ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+        run: |
+          s config add -a default \
+            --AccessKeyID "$ALIBABA_CLOUD_ACCESS_KEY_ID" \
+            --AccessKeySecret "$ALIBABA_CLOUD_ACCESS_KEY_SECRET" -f
+          cd agent-api
+          s deploy -y --use-local
+
+      - name: Preserve existing API routes and mount MCP
+        env:
+          ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+        run: node scripts/configure-fc-route.cjs
+
+      - name: Setup Aliyun CLI
+        uses: aliyun/setup-aliyun-cli-action@v1
+
+      - name: Configure Link, Markdown and DNS-AID discovery
+        env:
+          ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          ALIBABA_CLOUD_REGION_ID: cn-hangzhou
+          ALIBABA_CLOUD_IGNORE_PROFILE: 'TRUE'
+        run: node scripts/configure-aliyun-discovery.mjs
+
+      - name: Production smoke test
+        env:
+          SMOKE_TIMEOUT_MS: 300000
+        run: npm run smoke:production

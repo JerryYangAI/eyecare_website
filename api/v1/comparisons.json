@@ -1,0 +1,34 @@
+{
+  "principle": "护理方式应按目标、即时体验、准备维护和使用习惯选择，不做脱离条件的统一优劣排名。",
+  "methods": [
+    {
+      "name": "蒸汽雾化",
+      "primaryExperience": "明显的即时湿润感",
+      "preparation": "通常需要加水或耗材",
+      "suitablePreference": "重视水雾与即时湿润体验"
+    },
+    {
+      "name": "湿热",
+      "primaryExperience": "温度与水分同时作用",
+      "preparation": "需要湿性介质并注意清洁",
+      "suitablePreference": "接受准备步骤并偏好湿润暖敷"
+    },
+    {
+      "name": "干热",
+      "primaryExperience": "稳定温热与贴合",
+      "preparation": "无需加水",
+      "suitablePreference": "重视简洁操作与温热体验"
+    },
+    {
+      "name": "红光与恒温热敷",
+      "primaryExperience": "无水雾、温暖、闭眼放松",
+      "preparation": "无需加水，按固定流程使用",
+      "suitablePreference": "重视无水操作、固定节奏与日常坚持"
+    }
+  ],
+  "sources": [
+    "https://www.koushicare.cn/cn/evidence/care-methods-comparison.html",
+    "https://www.koushicare.cn/cn/evidence/why-no-steam.html"
+  ],
+  "lastUpdated": "2026-08-30"
+}

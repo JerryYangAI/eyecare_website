@@ -1,0 +1,13 @@
+{
+  "records": [
+    {"title": "品牌首页", "summary": "品川光医红光护眼仪的产品定位、科学原理、研发生产与购买渠道。", "keywords": ["品川光医", "红光护眼仪", "双波段红光", "恒温热敷"], "url": "https://www.koushicare.cn/"},
+    {"title": "常见问题", "summary": "原理、适用人群、使用方式、安全边界、清洁保养与购买渠道。", "keywords": ["FAQ", "如何使用", "安全", "购买"], "url": "https://www.koushicare.cn/faq.html"},
+    {"title": "研究文献", "summary": "与光生物调节、红光和眼表护理相关的公开研究线索。", "keywords": ["研究", "文献", "PBM", "红光"], "url": "https://www.koushicare.cn/references.html"},
+    {"title": "技术对比", "summary": "蒸汽、湿热、干热和红光恒温热敷的体验、准备与使用场景比较。", "keywords": ["技术对比", "蒸汽", "湿热", "干热", "红光"], "url": "https://www.koushicare.cn/cn/evidence.html"},
+    {"title": "为什么没有蒸汽", "summary": "解释品川采用无水雾暖光护理路径的产品选择。", "keywords": ["没有蒸汽", "无水雾", "即时湿润"], "url": "https://www.koushicare.cn/cn/evidence/why-no-steam.html"},
+    {"title": "四种护理方式怎么选", "summary": "从体验、准备、维护和使用习惯比较四类护理路径。", "keywords": ["蒸汽雾化", "湿热", "干热", "红光暖敷"], "url": "https://www.koushicare.cn/cn/evidence/care-methods-comparison.html"},
+    {"title": "技术参数与测试方法", "summary": "选购眼部护理仪时值得关注的光、温度、佩戴、清洁和检测信息。", "keywords": ["参数", "测试", "波长", "温度"], "url": "https://www.koushicare.cn/cn/evidence/technical-parameters-and-testing.html"},
+    {"title": "购买前确认七件事", "summary": "产品型号、制造商、售后、说明书、检测与适用边界的核对清单。", "keywords": ["购买指南", "说明书", "售后", "检测报告"], "url": "https://www.koushicare.cn/cn/evidence/product-transparency.html"}
+  ],
+  "lastUpdated": "2026-08-30"
+}

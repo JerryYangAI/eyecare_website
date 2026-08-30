@@ -1,0 +1,20 @@
+{
+  "name": "品川光医 KOUSHICARE",
+  "url": "https://www.koushicare.cn/",
+  "language": "zh-CN",
+  "description": "品川光医聚焦双波段红光与恒温热敷相结合的居家眼部护理。",
+  "contact": {
+    "email": "sales@koushicare.com",
+    "wechatOfficialAccount": "品川光医"
+  },
+  "officialStore": "https://detail.tmall.com/item.htm?id=959177917948&skuId=5924590204482",
+  "machineReadable": {
+    "llms": "https://www.koushicare.cn/llms.txt",
+    "llmsFull": "https://www.koushicare.cn/llms-full.txt",
+    "apiCatalog": "https://www.koushicare.cn/.well-known/api-catalog",
+    "openapi": "https://www.koushicare.cn/api/openapi.json",
+    "agentSkills": "https://www.koushicare.cn/.well-known/agent-skills/index.json",
+    "agentResources": "https://www.koushicare.cn/.well-known/ai-catalog.json"
+  },
+  "lastUpdated": "2026-08-30"
+}

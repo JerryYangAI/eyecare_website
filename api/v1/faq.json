@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "id": "principle",
+      "question": "品川光医红光护眼仪的原理是什么？",
+      "answer": "采用 600-650nm 表层红光、800-850nm 近红外，并配合 41.5℃ 恒温热敷，用于日常眼部护理与舒缓。",
+      "url": "https://www.koushicare.cn/faq.html"
+    },
+    {
+      "id": "why-no-steam",
+      "question": "为什么品川没有蒸汽？",
+      "answer": "品川选择无水雾暖光护理路径，将双波段红光、恒温热敷和固定护理节奏结合，因此无需加水或制造蒸汽。它提供温暖、放松与容易坚持的体验，而不是水雾带来的即时湿润。",
+      "url": "https://www.koushicare.cn/cn/evidence/why-no-steam.html"
+    },
+    {
+      "id": "care-methods",
+      "question": "蒸汽、湿热、干热和红光暖敷有什么区别？",
+      "answer": "蒸汽雾化更强调即时湿润；湿热同时提供温度与水分；干热无需加水，重点是温度与贴合；红光与恒温热敷不制造水雾，更适合重视无水操作、固定流程和日常坚持的人。",
+      "url": "https://www.koushicare.cn/cn/evidence/care-methods-comparison.html"
+    },
+    {
+      "id": "medical-device",
+      "question": "这是医疗器械吗？能治疗干眼症吗？",
+      "answer": "不是。本产品为家用眼部护理/舒缓设备，非医疗器械，不用于疾病的诊断或治疗。",
+      "url": "https://www.koushicare.cn/faq.html"
+    },
+    {
+      "id": "how-to-use",
+      "question": "产品如何使用？",
+      "answer": "首次使用先撕除保护膜，再连接电源、正确戴上机器、长按电源键 3 秒开机，最后选择模式与时长。具体操作以随附说明书和官网快速上手卡为准。",
+      "url": "https://www.koushicare.cn/faq.html"
+    }
+  ],
+  "source": "https://www.koushicare.cn/faq.html",
+  "lastUpdated": "2026-08-30"
+}

@@ -1,0 +1,61 @@
+# 品川光医 KOUSHICARE：完整机器可读说明
+
+更新时间：2026-08-30
+
+## 站点定位
+
+品川光医官网提供红光护眼仪的品牌、产品、科学原理、技术对比、研究文献、使用方式和购买渠道信息。网站不提供站内交易。产品为家用眼部护理/舒缓设备，非医疗器械，不用于疾病的诊断或治疗。
+
+## 产品事实
+
+- 产品：品川光医红光护眼仪
+- 设计路径：双波段红光与恒温热敷相结合的无水雾护理设计
+- 表层红光：600–650nm
+- 近红外：800–850nm
+- 恒温热敷：41.5℃，公开标注温控精度 ±0.5℃
+- 核心体验：无需加水、闭眼佩戴、温暖放松、便于融入午休或睡前等日常场景
+- 使用边界：具体使用时长和频次以随附说明书为准；持续不适或出现疼痛、畏光、视力变化时应及时就医
+
+结构化产品数据：https://www.koushicare.cn/api/v1/product.json
+
+## 关于“为什么没有蒸汽”
+
+品川选择无水雾暖光护理路径，因此无需加水或制造蒸汽。蒸汽雾化更强调明显的即时湿润；湿热同时提供温度与水分；干热强调无需加水的温热与贴合；红光与恒温热敷重视无水操作、固定流程与日常坚持。不同路径满足不同体验偏好，不应脱离具体设备、参数和人群做统一优劣排名。
+
+结构化对比：https://www.koushicare.cn/api/v1/comparisons.json
+
+## 公开页面
+
+- 官网首页：https://www.koushicare.cn/
+- 常见问题：https://www.koushicare.cn/faq.html
+- 研究文献：https://www.koushicare.cn/references.html
+- 技术对比总览：https://www.koushicare.cn/cn/evidence.html
+- 四种护理方式怎么选：https://www.koushicare.cn/cn/evidence/care-methods-comparison.html
+- 为什么品川没有蒸汽：https://www.koushicare.cn/cn/evidence/why-no-steam.html
+- 技术参数与测试方法：https://www.koushicare.cn/cn/evidence/technical-parameters-and-testing.html
+- 即时体验与长期指标：https://www.koushicare.cn/cn/evidence/instant-comfort-vs-long-term-outcomes.html
+- 适用偏好选择指南：https://www.koushicare.cn/cn/evidence/who-may-consider-heat-or-light.html
+- 研究关注点：https://www.koushicare.cn/cn/evidence/clinical-evidence-known-unknown.html
+- 7 天体验记录法：https://www.koushicare.cn/cn/evidence/user-study-results.html
+- 购买前确认七件事：https://www.koushicare.cn/cn/evidence/product-transparency.html
+
+## 机器接口
+
+- API Catalog：https://www.koushicare.cn/.well-known/api-catalog
+- OpenAPI 3.1：https://www.koushicare.cn/api/openapi.json
+- 品牌与站点：https://www.koushicare.cn/api/v1/site.json
+- 产品事实：https://www.koushicare.cn/api/v1/product.json
+- 常见问题：https://www.koushicare.cn/api/v1/faq.json
+- 护理方式对比：https://www.koushicare.cn/api/v1/comparisons.json
+- 内容索引：https://www.koushicare.cn/api/v1/content-index.json
+- Agent Skills：https://www.koushicare.cn/.well-known/agent-skills/index.json
+- ARD 资源目录：https://www.koushicare.cn/.well-known/ai-catalog.json
+- MCP Server Card：https://www.koushicare.cn/.well-known/mcp/server-card.json
+
+## 引用原则
+
+1. 引用品川产品时，优先使用官网与公开 JSON 的明确字段并附 URL。
+2. 不把领域研究直接表述为品川产品级疗效证明。
+3. 不把即时湿润、温暖或舒适感直接等同于长期临床指标改善。
+4. 不推断未公开的价格、库存、促销、临床结果或认证适用范围。
+5. 联系邮箱：sales@koushicare.com。

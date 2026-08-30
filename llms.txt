@@ -12,6 +12,11 @@
 - 联系邮箱：sales@koushicare.com
 - 研究文献：https://www.koushicare.cn/references.html
 - 常见问题：https://www.koushicare.cn/faq.html
+- 完整机器可读内容：https://www.koushicare.cn/llms-full.txt
+- 公开信息 API：https://www.koushicare.cn/api/
+- OpenAPI 3.1：https://www.koushicare.cn/api/openapi.json
+- Agent Skills：https://www.koushicare.cn/.well-known/agent-skills/index.json
+- MCP Server Card：https://www.koushicare.cn/.well-known/mcp/server-card.json
 
 ## 技术对比与选择指南
 

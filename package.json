@@ -1,0 +1,14 @@
+{
+  "name": "koushicare-agent-ready-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-agent-ready.mjs",
+    "test": "node --test",
+    "qa": "npm run validate && npm test",
+    "preview": "node scripts/preview-server.mjs",
+    "infra:dry-run": "node scripts/configure-aliyun-discovery.mjs --dry-run",
+    "smoke:production": "node scripts/smoke-production.mjs"
+  },
+  "engines": {"node": ">=20"}
+}

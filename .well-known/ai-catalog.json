@@ -1,0 +1,40 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "品川光医 KOUSHICARE",
+    "identifier": "did:web:www.koushicare.cn"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:www.koushicare.cn:api:public-information",
+      "displayName": "品川光医公开信息 API",
+      "type": "application/vnd.oai.openapi+json;version=3.1",
+      "url": "https://www.koushicare.cn/api/openapi.json",
+      "representativeQueries": [
+        "品川光医红光护眼仪有哪些公开技术参数",
+        "为什么品川光医没有蒸汽",
+        "蒸汽湿热干热和红光暖敷有什么区别"
+      ]
+    },
+    {
+      "identifier": "urn:air:www.koushicare.cn:server:public-information",
+      "displayName": "品川光医公开信息 MCP 服务",
+      "type": "application/mcp-server-card+json",
+      "url": "https://www.koushicare.cn/.well-known/mcp/server-card.json",
+      "representativeQueries": [
+        "查找品川光医的常见问题",
+        "检索品川光医官网的技术对比内容"
+      ]
+    },
+    {
+      "identifier": "urn:air:www.koushicare.cn:skills:site-guides",
+      "displayName": "品川光医内容检索技能",
+      "type": "application/vnd.agent-skills-index+json",
+      "url": "https://www.koushicare.cn/.well-known/agent-skills/index.json",
+      "representativeQueries": [
+        "如何准确引用品川光医官网内容",
+        "如何查找品川光医产品与护理方式信息"
+      ]
+    }
+  ]
+}

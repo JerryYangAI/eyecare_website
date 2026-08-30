@@ -1,0 +1,28 @@
+{
+  "brand": "品川光医 KOUSHICARE",
+  "productName": "品川光医红光护眼仪",
+  "category": "家用眼部护理/舒缓设备",
+  "positioning": "面向长期盯屏、熬夜、空调低湿度等日常用眼场景的居家护理方案",
+  "technology": {
+    "lightBandsNm": [
+      {"name": "表层红光", "range": "600-650"},
+      {"name": "近红外", "range": "800-850"}
+    ],
+    "heatCelsius": 41.5,
+    "temperatureToleranceCelsius": 0.5,
+    "design": "双波段红光与恒温热敷相结合的无水雾护理设计"
+  },
+  "experience": [
+    "无需加水",
+    "闭眼佩戴",
+    "适合午休、睡前或长时间用眼后使用",
+    "具体时长和频次以随附说明书为准"
+  ],
+  "usageBoundary": "本产品为家用眼部护理/舒缓设备，非医疗器械，不用于疾病的诊断或治疗。持续不适或出现疼痛、畏光、视力变化时应及时就医。",
+  "primarySources": [
+    "https://www.koushicare.cn/",
+    "https://www.koushicare.cn/faq.html",
+    "https://www.koushicare.cn/cn/evidence.html"
+  ],
+  "lastUpdated": "2026-08-30"
+}

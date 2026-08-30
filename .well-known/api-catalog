@@ -1,0 +1,22 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.koushicare.cn/api/",
+      "service-desc": [
+        {"href": "https://www.koushicare.cn/api/openapi.json", "type": "application/vnd.oai.openapi+json;version=3.1"}
+      ],
+      "service-doc": [
+        {"href": "https://www.koushicare.cn/llms-full.txt", "type": "text/plain"}
+      ],
+      "status": [
+        {"href": "https://www.koushicare.cn/api/status.json", "type": "application/json"}
+      ]
+    },
+    {
+      "anchor": "https://api.koushicare.cn/mcp",
+      "service-desc": [
+        {"href": "https://www.koushicare.cn/.well-known/mcp/server-card.json", "type": "application/mcp-server-card+json"}
+      ]
+    }
+  ]
+}

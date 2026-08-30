@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "product-guide",
+      "type": "skill-md",
+      "description": "查询和引用品川光医红光护眼仪的公开产品事实、使用方式与适用边界。",
+      "url": "https://www.koushicare.cn/.well-known/agent-skills/product-guide/SKILL.md",
+      "digest": "sha256:b5885a73e61b3009defd01bc94c09f0f3ccfcccf5c72f28825152874dcefd3cb"
+    },
+    {
+      "name": "care-method-comparison",
+      "type": "skill-md",
+      "description": "比较蒸汽、湿热、干热和红光恒温热敷的体验、准备与使用路径。",
+      "url": "https://www.koushicare.cn/.well-known/agent-skills/care-method-comparison/SKILL.md",
+      "digest": "sha256:09e5f73f181ff71654c1d0bd55f250ec6ab764d207ff4cc8a725ce78eeea9cff"
+    },
+    {
+      "name": "site-content-retrieval",
+      "type": "skill-md",
+      "description": "检索品川光医官网页面，并返回最相关的标题、摘要与官方链接。",
+      "url": "https://www.koushicare.cn/.well-known/agent-skills/site-content-retrieval/SKILL.md",
+      "digest": "sha256:98ba4480b45562df3b4aecd66f4afb6275a9df70ed030c32d5202e497a2c00f2"
+    }
+  ]
+}

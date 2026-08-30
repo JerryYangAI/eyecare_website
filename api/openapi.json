@@ -1,0 +1,26 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "品川光医公开信息 API",
+    "version": "1.0.0",
+    "description": "面向搜索引擎、AI 代理与合作方的只读公开信息接口。所有响应均来自官网已发布内容，不提供账户、交易或写入能力。",
+    "contact": {"email": "sales@koushicare.com"},
+    "license": {"name": "All rights reserved", "identifier": "LicenseRef-Proprietary"}
+  },
+  "servers": [{"url": "https://www.koushicare.cn/api"}],
+  "security": [],
+  "paths": {
+    "/v1/site.json": {"get": {"operationId": "getSite", "summary": "获取品牌与站点信息", "responses": {"200": {"$ref": "#/components/responses/JsonDocument"}, "404": {"$ref": "#/components/responses/NotFound"}}}},
+    "/v1/product.json": {"get": {"operationId": "getProduct", "summary": "获取产品事实与使用边界", "responses": {"200": {"$ref": "#/components/responses/JsonDocument"}, "404": {"$ref": "#/components/responses/NotFound"}}}},
+    "/v1/faq.json": {"get": {"operationId": "getFaq", "summary": "获取常见问题", "responses": {"200": {"$ref": "#/components/responses/JsonDocument"}, "404": {"$ref": "#/components/responses/NotFound"}}}},
+    "/v1/comparisons.json": {"get": {"operationId": "getComparisons", "summary": "获取护理方式对比", "responses": {"200": {"$ref": "#/components/responses/JsonDocument"}, "404": {"$ref": "#/components/responses/NotFound"}}}},
+    "/v1/content-index.json": {"get": {"operationId": "getContentIndex", "summary": "获取站内可检索内容索引", "responses": {"200": {"$ref": "#/components/responses/JsonDocument"}, "404": {"$ref": "#/components/responses/NotFound"}}}},
+    "/status.json": {"get": {"operationId": "getStatus", "summary": "获取公开信息 API 状态", "responses": {"200": {"$ref": "#/components/responses/JsonDocument"}, "404": {"$ref": "#/components/responses/NotFound"}}}}
+  },
+  "components": {
+    "responses": {
+      "JsonDocument": {"description": "公开 JSON 文档", "content": {"application/json": {"schema": {"type": "object"}}}},
+      "NotFound": {"description": "资源不存在"}
+    }
+  }
+}

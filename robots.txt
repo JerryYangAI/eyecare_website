@@ -37,3 +37,4 @@ User-agent: Bytespider
 Allow: /
 
 Sitemap: https://www.koushicare.cn/sitemap.xml
+Agentmap: https://www.koushicare.cn/.well-known/ai-catalog.json

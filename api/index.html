@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>品川光医公开信息 API</title>
+  <meta name="description" content="品川光医面向搜索引擎、AI 代理与合作方的只读公开信息接口。">
+  <link rel="canonical" href="https://www.koushicare.cn/api/">
+  <style>
+    :root{color-scheme:light;--ink:#30251f;--muted:#75665c;--line:#e5d7c8;--paper:#fbf6ef;--accent:#d97f4d}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 system-ui,-apple-system,"Noto Sans SC",sans-serif}.wrap{width:min(900px,calc(100% - 40px));margin:0 auto;padding:72px 0}h1{font:600 clamp(36px,7vw,64px)/1.15 Georgia,"Noto Serif SC",serif;margin:0 0 18px}p{color:var(--muted)}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;margin:18px 0}a{color:#9f4f2a;text-decoration-thickness:1px;text-underline-offset:3px}code{background:#f3e9df;padding:2px 6px;border-radius:5px}.tag{display:inline-block;color:#fff;background:var(--accent);border-radius:999px;padding:5px 12px;font-size:13px;margin-bottom:18px}
+  </style>
+</head>
+<body><main class="wrap">
+  <span class="tag">READ-ONLY · PUBLIC</span>
+  <h1>品川光医公开信息 API</h1>
+  <p>这些接口把官网已经发布的品牌、产品、常见问题与护理方式对比转换为稳定的 JSON，便于搜索引擎、AI 代理与合作方准确读取。接口不提供账户、交易或写入能力。</p>
+  <section class="card"><h2>接口描述</h2><p><a href="/api/openapi.json">OpenAPI 3.1 JSON</a> · <a href="/.well-known/api-catalog">RFC 9727 API Catalog</a> · <a href="/api/status.json">服务状态</a></p></section>
+  <section class="card"><h2>公开数据</h2><p><a href="/api/v1/site.json">品牌与站点</a> · <a href="/api/v1/product.json">产品事实</a> · <a href="/api/v1/faq.json">常见问题</a> · <a href="/api/v1/comparisons.json">护理方式对比</a> · <a href="/api/v1/content-index.json">内容索引</a></p></section>
+  <section class="card"><h2>使用约定</h2><p>请保留数据中的来源 URL 与使用边界。批量抓取前可先查看 <a href="/robots.txt">robots.txt</a>；问题与合作请联系 <a href="mailto:sales@koushicare.com">sales@koushicare.com</a>。</p></section>
+  <p><a href="/">← 返回品牌首页</a></p>
+</main></body>
+</html>

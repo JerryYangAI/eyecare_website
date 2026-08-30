@@ -1,0 +1,17 @@
+{
+  "serverInfo": {
+    "name": "品川光医公开信息服务",
+    "version": "1.0.0"
+  },
+  "description": "查询品川光医的产品事实、常见问题、护理方式对比和官网内容。只读，不提供交易或账户操作。",
+  "url": "https://api.koushicare.cn/mcp",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://api.koushicare.cn/mcp"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": false
+  }
+}
