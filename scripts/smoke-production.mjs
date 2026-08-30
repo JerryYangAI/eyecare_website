@@ -54,7 +54,7 @@ await eventually("Agent Skills and MCP Server Card", async () => {
 });
 
 await eventually("MCP Streamable HTTP initialize", async () => {
-  const response = await fetch("https://api.koushicare.cn/mcp", {
+  const response = await fetch("https://eyecare-website.pages.dev/mcp", {
     method: "POST",
     headers: {"Content-Type": "application/json", Accept: "application/json"},
     body: JSON.stringify({jsonrpc: "2.0", id: 1, method: "initialize", params: {}})

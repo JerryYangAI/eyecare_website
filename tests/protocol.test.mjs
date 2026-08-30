@@ -14,6 +14,7 @@ test("API catalog is an RFC 9727 linkset with docs, schema and status", async ()
   assert.match(api["service-desc"][0].href, /openapi\.json$/);
   assert.match(api["service-doc"][0].href, /llms-full\.txt$/);
   assert.match(api.status[0].href, /status\.json$/);
+  assert.equal(catalog.linkset[1].anchor, "https://eyecare-website.pages.dev/mcp");
 });
 
 test("OpenAPI publishes only GET operations and maps to committed files", async () => {
@@ -54,6 +55,7 @@ test("MCP Server Card describes the tested read-only server", async () => {
   const card = await readJson(".well-known/mcp/server-card.json");
   assert.equal(card.transport.type, "streamable-http");
   assert.equal(card.transport.endpoint, card.url);
+  assert.equal(card.url, "https://eyecare-website.pages.dev/mcp");
   assert.equal(card.capabilities.tools, true);
   assert.equal(card.capabilities.resources, true);
   assert.equal(card.capabilities.prompts, false);

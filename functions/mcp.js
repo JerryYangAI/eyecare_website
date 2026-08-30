@@ -1,5 +1,3 @@
-"use strict";
-
 const PUBLIC_ORIGIN = "https://www.koushicare.cn";
 const PROTOCOL_VERSION = "2025-03-26";
 
@@ -24,16 +22,16 @@ const resources = Object.entries(endpoints).map(([name, uri]) => ({
   mimeType: "application/json"
 }));
 
-const reply = (statusCode, body, extraHeaders = {}) => ({
-  statusCode,
-  headers: {
-    "Content-Type": "application/json; charset=utf-8",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type, Accept, Mcp-Session-Id",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS, HEAD",
-    ...extraHeaders
-  },
-  body: body === "" ? "" : JSON.stringify(body)
+const responseHeaders = {
+  "Content-Type": "application/json; charset=utf-8",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type, Accept, Mcp-Session-Id",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS, HEAD"
+};
+
+const reply = (body, status = 200) => new Response(body === "" ? null : JSON.stringify(body), {
+  status,
+  headers: responseHeaders
 });
 
 const rpcResult = (id, result) => ({jsonrpc: "2.0", id, result});
@@ -89,46 +87,34 @@ async function handleRpc(message) {
   return rpcError(id, -32601, "Method not found");
 }
 
-exports.handler = async (event) => {
-  let request;
-  try { request = JSON.parse(Buffer.isBuffer(event) ? event.toString("utf8") : String(event)); }
-  catch { return reply(400, {error: "invalid_event"}); }
-
-  const method = request.requestContext?.http?.method || "GET";
-  const path = request.requestContext?.http?.path || request.rawPath || "/";
-
-  if (method === "OPTIONS") return reply(204, "");
-  if (method === "HEAD") return reply(200, "");
-  if (method === "GET") {
-    return reply(200, {
+export async function onRequest({request}) {
+  if (request.method === "OPTIONS") return reply("", 204);
+  if (request.method === "HEAD") return reply("");
+  if (request.method === "GET") {
+    return reply({
       ok: true,
       service: "koushicare-public-information-mcp",
-      endpoint: path,
       protocol: "MCP Streamable HTTP",
       protocolVersion: PROTOCOL_VERSION,
       capabilities: {tools: true, resources: true}
     });
   }
-  if (method !== "POST") return reply(405, {error: "method_not_allowed"});
+  if (request.method !== "POST") return reply({error: "method_not_allowed"}, 405);
 
   let payload;
-  try {
-    const decoded = request.isBase64Encoded ? Buffer.from(request.body || "", "base64").toString("utf8") : request.body;
-    payload = typeof decoded === "string" ? JSON.parse(decoded) : decoded;
-  } catch {
-    return reply(400, rpcError(null, -32700, "Parse error"));
-  }
+  try { payload = await request.json(); }
+  catch { return reply(rpcError(null, -32700, "Parse error"), 400); }
 
   try {
     if (Array.isArray(payload)) {
       const results = (await Promise.all(payload.map(handleRpc))).filter(Boolean);
-      return results.length ? reply(200, results) : reply(202, "");
+      return results.length ? reply(results) : reply("", 202);
     }
     const result = await handleRpc(payload);
-    return result ? reply(200, result) : reply(202, "");
+    return result ? reply(result) : reply("", 202);
   } catch (error) {
-    return reply(200, rpcError(payload?.id, -32000, error.message || "Tool execution failed"));
+    return reply(rpcError(payload?.id, -32000, error.message || "Tool execution failed"));
   }
-};
+}
 
-exports._test = {handleRpc, callTool, tools, resources, reply};
+export const _test = {handleRpc, callTool, tools, resources};

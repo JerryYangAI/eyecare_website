@@ -1,7 +1,0 @@
-{
-  "name": "koushicare-public-information-mcp",
-  "version": "1.0.0",
-  "private": true,
-  "type": "commonjs",
-  "engines": {"node": ">=20"}
-}

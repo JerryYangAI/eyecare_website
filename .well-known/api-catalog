@@ -13,7 +13,7 @@
       ]
     },
     {
-      "anchor": "https://api.koushicare.cn/mcp",
+      "anchor": "https://eyecare-website.pages.dev/mcp",
       "service-desc": [
         {"href": "https://www.koushicare.cn/.well-known/mcp/server-card.json", "type": "application/mcp-server-card+json"}
       ]

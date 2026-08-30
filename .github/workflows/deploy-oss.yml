@@ -18,9 +18,6 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install pinned deployment dependencies
-        run: npm ci --ignore-scripts
-
       - name: Strict local validation and tests
         run: npm run qa
 
@@ -41,6 +38,7 @@ jobs:
             --exclude "agent-api" \
             --exclude "cms-auth" \
             --exclude "edge" \
+            --exclude "functions" \
             --exclude "scripts" \
             --exclude "tests" \
             --exclude "package.json" \
@@ -58,18 +56,6 @@ jobs:
             ./.well-known/api-catalog oss://${{ secrets.OSS_BUCKET }}/.well-known/api-catalog
           ossutil cp -f --meta Cache-Control:no-cache#Content-Type:text/markdown \
             ./index.md oss://${{ secrets.OSS_BUCKET }}/index.md
-
-      - name: Deploy and verify read-only MCP with the official SDK
-        env:
-          ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
-          ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
-        run: node scripts/deploy-agent-api.cjs
-
-      - name: Preserve existing API routes and mount MCP
-        env:
-          ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
-          ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
-        run: node scripts/configure-fc-route.cjs
 
       - name: Setup Aliyun CLI
         uses: aliyun/setup-aliyun-cli-action@v1

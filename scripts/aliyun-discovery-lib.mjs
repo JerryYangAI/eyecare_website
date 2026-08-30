@@ -2,7 +2,7 @@ export const CDN_DOMAIN = "www.koushicare.cn";
 export const DNS_DOMAIN = "koushicare.cn";
 export const DNS_RR = "_index._agents";
 export const DNS_TYPE = "SVCB";
-export const DNS_VALUE = "1 api.koushicare.cn. alpn=\"h2\" port=443 key65480=\"/mcp\"";
+export const DNS_VALUE = "1 eyecare-website.pages.dev. alpn=\"h2\" port=443 key65480=\"/mcp\"";
 export const EDGE_NAME = "koushicare_agent_ready";
 
 export function edgeFunctionPayload(rule) {
