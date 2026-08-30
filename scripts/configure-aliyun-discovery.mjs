@@ -77,8 +77,7 @@ function configureDns() {
     RR: DNS_RR,
     Type: DNS_TYPE,
     Value: DNS_VALUE,
-    TTL: 600,
-    Remark: "Koushicare Agent-Ready MCP discovery"
+    TTL: 600
   });
 }
 
