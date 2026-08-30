@@ -15,6 +15,7 @@ const required = [
   ".well-known/api-catalog", ".well-known/mcp/server-card.json",
   ".well-known/agent-skills/index.json", ".well-known/ai-catalog.json",
   "api/openapi.json", "api/status.json", "agent-api/index.js",
+  "scripts/deploy-agent-api.cjs", "scripts/fc-deploy-lib.cjs",
   "edge/agent-ready.es", ".github/workflows/deploy-oss.yml"
 ];
 for (const path of required) ok(await exists(path), `required artifact: ${path}`);
@@ -59,9 +60,11 @@ ok(webmcp.includes("registerTool"), "WebMCP registers tools imperatively");
 ok(!/\b(?:POST|PUT|PATCH|DELETE)\b/.test(webmcp), "WebMCP exposes no write requests");
 
 const workflow = await readFile(join(root, ".github/workflows/deploy-oss.yml"), "utf8");
-for (const marker of ["npm run qa", "Deploy read-only MCP", "Configure Link, Markdown and DNS-AID discovery", "Production smoke test"]) {
+for (const marker of ["npm run qa", "Deploy and verify read-only MCP with the official SDK", "Configure Link, Markdown and DNS-AID discovery", "Production smoke test"]) {
   ok(workflow.includes(marker), `deployment gate exists: ${marker}`);
 }
+ok(!workflow.includes("@serverless-devs/s"), "deployment does not depend on Serverless Devs");
+ok(workflow.includes("node scripts/deploy-agent-api.cjs"), "deployment invokes the verified SDK deployer");
 
 const htmlFiles = [];
 async function walk(directory) {

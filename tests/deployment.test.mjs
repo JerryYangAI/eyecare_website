@@ -1,8 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
+import {createRequire} from "node:module";
 import {mergeMcpRoutes} from "../scripts/fc-route-lib.mjs";
 import {DNS_VALUE, edgeFunctionPayload, assertNoDnsConflict} from "../scripts/aliyun-discovery-lib.mjs";
+
+const require = createRequire(import.meta.url);
+const FC = require("@alicloud/fc20230330");
+const {
+  FUNCTION_NAME, TRIGGER_NAME, METHODS,
+  buildFunctionInputs, buildTriggerInputs, assertFunction, assertTrigger
+} = require("../scripts/fc-deploy-lib.cjs");
 
 test("Function Compute route merge preserves chat catch-all and inserts MCP first", () => {
   const rewriteConfig = {equalRules: [{match: "/legacy", replacement: "/index.html"}]};
@@ -30,4 +38,37 @@ test("CDN payload contains the reviewed EdgeScript and stable managed name", asy
   assert.equal(args.name, "koushicare_agent_ready");
   assert.equal(args.rule, rule);
   assert.equal(args.enable, "on");
+});
+
+test("Function Compute SDK deployment payloads validate against the pinned official models", () => {
+  const functionInputs = buildFunctionInputs(FC, "UEsDBAoAAAAA");
+  assert.equal(functionInputs.create.functionName, FUNCTION_NAME);
+  assert.equal(functionInputs.create.runtime, "nodejs20");
+  assert.equal(functionInputs.update.disableInjectCredentials, "All");
+
+  const triggerInputs = buildTriggerInputs(FC);
+  assert.equal(triggerInputs.create.triggerName, TRIGGER_NAME);
+  assert.equal(triggerInputs.create.triggerType, "http");
+  assert.deepEqual(JSON.parse(triggerInputs.create.triggerConfig).methods, METHODS);
+});
+
+test("Function Compute post-deploy verification rejects unsafe cloud state", () => {
+  assert.doesNotThrow(() => assertFunction({
+    functionName: FUNCTION_NAME,
+    runtime: "nodejs20",
+    handler: "index.handler",
+    lastUpdateStatus: "Successful"
+  }));
+  assert.throws(() => assertFunction({functionName: FUNCTION_NAME, runtime: "nodejs18", handler: "index.handler"}), /runtime/);
+
+  assert.doesNotThrow(() => assertTrigger({
+    triggerName: TRIGGER_NAME,
+    triggerType: "http",
+    triggerConfig: JSON.stringify({authType: "anonymous", methods: METHODS})
+  }));
+  assert.throws(() => assertTrigger({
+    triggerName: TRIGGER_NAME,
+    triggerType: "http",
+    triggerConfig: JSON.stringify({authType: "function", methods: METHODS})
+  }), /not anonymous/);
 });

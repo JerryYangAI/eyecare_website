@@ -8,7 +8,7 @@
 
 - **静态站点**：纯 HTML/CSS/JS，部署到阿里云 OSS，通过阿里云 CDN 提供 `www.koushicare.cn`。
 - **公开机器接口**：`/api/`、OpenAPI、RFC 9727 API Catalog、ARD、Agent Skills、WebMCP 与 `llms.txt`。
-- **只读 MCP**：独立部署到阿里云函数计算，通过 `https://api.koushicare.cn/mcp` 提供；部署脚本只增加 `/mcp` 路由并保留现有客服接口。
+- **只读 MCP**：通过锁定版本的阿里云官方 SDK 幂等部署到函数计算，由 `https://api.koushicare.cn/mcp` 提供；部署脚本会核验函数与匿名 HTTP 触发器，只增加 `/mcp` 路由并保留现有客服接口。
 - **响应协商**：CDN EdgeScript 为首页添加发现 `Link` 头，并在客户端明确发送 `Accept: text/markdown` 时返回 `index.md`；浏览器仍默认获得 HTML。
 - **DNS 发现**：阿里云 DNS 发布 `_index._agents.koushicare.cn` SVCB 记录，指向只读公开信息服务。
 - **发布门禁**：推送到 `main` 后，GitHub Actions 先执行本地结构校验与单元测试，再部署，最后对生产域名执行端到端冒烟测试；任一步失败都会使流水线失败。

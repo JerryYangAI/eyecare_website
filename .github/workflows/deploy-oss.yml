@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install pinned deployment dependencies
+        run: npm ci --ignore-scripts
+
       - name: Strict local validation and tests
         run: npm run qa
 
@@ -56,21 +59,11 @@ jobs:
           ossutil cp -f --meta Cache-Control:no-cache#Content-Type:text/markdown \
             ./index.md oss://${{ secrets.OSS_BUCKET }}/index.md
 
-      - name: Install Serverless Devs and Alibaba Cloud SDK
-        run: |
-          npm install --global @serverless-devs/s@3
-          npm install --no-save @alicloud/fc20230330@4.8.2 @alicloud/openapi-client@0.3.3
-
-      - name: Deploy read-only MCP
+      - name: Deploy and verify read-only MCP with the official SDK
         env:
           ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
           ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
-        run: |
-          s config add -a default \
-            --AccessKeyID "$ALIBABA_CLOUD_ACCESS_KEY_ID" \
-            --AccessKeySecret "$ALIBABA_CLOUD_ACCESS_KEY_SECRET" -f
-          cd agent-api
-          s deploy -y --use-local
+        run: node scripts/deploy-agent-api.cjs
 
       - name: Preserve existing API routes and mount MCP
         env:

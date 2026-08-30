@@ -10,5 +10,9 @@
     "infra:dry-run": "node scripts/configure-aliyun-discovery.mjs --dry-run",
     "smoke:production": "node scripts/smoke-production.mjs"
   },
+  "devDependencies": {
+    "@alicloud/fc20230330": "4.8.2",
+    "@alicloud/openapi-client": "0.3.3"
+  },
   "engines": {"node": ">=20"}
 }
